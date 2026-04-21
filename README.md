@@ -166,6 +166,27 @@ If you are unsure where to start, choose an entry point by scenario:
 - For long-lived domain knowledge: finish with `build_domain_map`
 - For mixed-stack projects: use `$backend-service-spec-skill` as the base workflow and enable `$cross-tech-stack-spec-skill`
 
+## `cross-tech-stack-spec-skill` Diagram Snapshot
+
+When the extension skill runs as a standard-output mixed-stack pass, companion Markdown/Mermaid diagrams should normally be generated together with the text pages.
+
+Typical default diagrams:
+
+- mixed-stack architecture diagram
+- cross-layer call graph
+- page/app/backend/task/callback/bridge sequence diagram when a route needs explicit ordering
+- interface mapping diagram when `enable_contract_map` is enabled and evidence supports it
+- gateway forwarding diagram when `enable_gateway_map` is enabled
+- context propagation diagram when `enable_context_propagation_map` is enabled
+- producer/topic/consumer route diagram when `enable_async_contract_map` is enabled
+
+Read more:
+
+- [Cross Tech Stack Spec Skill README](./cross-tech-stack-spec-skill/README.md)
+- [Extension Skill Command Output Map](./cross-tech-stack-spec-skill/references/command-output-map.md)
+- [Mixed-Stack Diagram Output Guidelines](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.md)
+- [Mixed-Stack Diagram Output Example Template](./cross-tech-stack-spec-skill/references/diagram-output-example-template.md)
+
 ## Open-Source Files
 
 This repository also includes skill-usage companion files:
@@ -223,6 +244,7 @@ Core enhancements:
 - mixed-stack noise control
 - communication evidence levels
 - interface mapping
+- mixed-stack architecture and cross-layer diagrams
 - mixed-stack domain mapping
 - incremental update mode
 - eight optional switch-controlled deep-analysis pages
@@ -233,6 +255,7 @@ Read next:
 - [Detailed Extension Usage Guide](./cross-tech-stack-spec-skill/references/extension-usage-guide.md)
 - [Extension Skill Command Output Map](./cross-tech-stack-spec-skill/references/command-output-map.md)
 - [Extension Skill Command Quick Reference](./cross-tech-stack-spec-skill/references/command-output-scenario-quickref.md)
+- [Mixed-Stack Diagram Output Guidelines](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.md)
 - [Full Analysis Mode](./references/full-analysis-mode.md)
 - [Optional Switch Extensions](./cross-tech-stack-spec-skill/references/optional-switch-controlled-extensions.md)
 - [Extension README](./cross-tech-stack-spec-skill/README.md)

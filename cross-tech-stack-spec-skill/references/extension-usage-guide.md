@@ -26,6 +26,7 @@ Once the extension skill is enabled, it strengthens these areas:
 - mixed-stack noise control
 - communication evidence levels
 - interface mapping pages
+- mixed-stack architecture and cross-layer diagrams
 - mixed-stack domain pages
 - incremental update mode
 
@@ -45,6 +46,26 @@ On top of that, you can explicitly enable eight finer-grained switches:
 - `enable_interface_verification_assets`
 
 These switches are disabled by default and are used only when explicitly requested.
+
+### Diagram default
+
+In a standard output run, this extension should also generate companion mixed-stack diagrams by default.
+
+Typical default diagrams include:
+
+- mixed-stack architecture diagram
+- cross-layer call graph
+- sequence diagrams when a route or failure path benefits from explicit ordering
+- switch-specific diagrams such as interface mapping, gateway forwarding, context propagation, or async route diagrams when the enabled scope supports them
+
+Only omit diagrams when:
+
+- the scope is too small to justify a responsible diagram
+- the evidence is too weak to support one
+- the user explicitly requests text-only output
+
+By default, diagrams should be embedded into the corresponding document.
+Use `mydocs/diagrams/` only when reuse, frequent standalone updates, centralized export/management, or explicit diagram/text separation is needed.
 
 ## 3. When To Use This Extension Skill
 
@@ -106,6 +127,8 @@ Typical outputs:
 - communication evidence matrix
 - interface mapping page
 - mixed-stack key route page
+- mixed-stack architecture diagram
+- cross-layer call graph
 
 ## 6. How To Turn Everything On
 
@@ -150,19 +173,21 @@ Recommended order:
 2. excluded or delayed scope page
 3. codemap
 4. router-map
-5. interface mapping page
-6. contract detail page
-7. field-lineage page
-8. context-propagation page
-9. error-semantics page
-10. async-contract page
-11. external-dependency dossier page
-12. verification-assets page
-13. mixed-stack domain page
+5. mixed-stack architecture diagram and key cross-layer call graph
+6. interface mapping page
+7. contract detail page
+8. field-lineage page
+9. context-propagation page
+10. error-semantics page
+11. async-contract page
+12. external-dependency dossier page
+13. verification-assets page
+14. mixed-stack domain page
 
 See the full command-to-output mapping here:
 
 - [Command Output Map](./command-output-map.md)
+- [Diagram Output Guidelines](./diagram-output-guidelines.md)
 
 ### Caution on full enablement
 
@@ -249,37 +274,37 @@ Use $backend-service-spec-skill as the base workflow, enable $cross-tech-stack-s
 
 Purpose: deeper request/response contract mapping.
 Best for: integration work, ambiguous parameters, contract-heavy APIs.
-Typical outputs: contract detail page, request parameter table, response field table.
+Typical outputs: contract detail page, request parameter table, response field table, interface mapping diagram.
 
 ### `enable_gateway_map`
 
 Purpose: gateway/BFF/forwarding/path-rewrite mapping.
 Best for: routing confusion and gateway-heavy flows.
-Typical outputs: gateway forwarding page, route list, landing-point mapping.
+Typical outputs: gateway forwarding page, route list, landing-point mapping, gateway forwarding diagram.
 
 ### `enable_field_lineage`
 
 Purpose: trace critical fields across layers.
 Best for: large DTOs, frequent renames, field provenance analysis.
-Typical outputs: field lineage page, field flow table, rename/transform notes.
+Typical outputs: field lineage page, field flow table, rename/transform notes, field movement diagram when useful.
 
 ### `enable_context_propagation_map`
 
 Purpose: trace token/userId/tenantId/traceId and similar context.
 Best for: auth, tenant, trace, and header propagation issues.
-Typical outputs: context propagation page, header propagation table, gap list.
+Typical outputs: context propagation page, header propagation table, gap list, context propagation diagram.
 
 ### `enable_error_semantics`
 
 Purpose: trace error code, failure behavior, retry, fallback, and compensation.
 Best for: production troubleshooting and failure-path analysis.
-Typical outputs: error semantics page, error mapping table, retry/compensation summary.
+Typical outputs: error semantics page, error mapping table, retry/compensation summary, failure-path sequence diagram when useful.
 
 ### `enable_async_contract_map`
 
 Purpose: trace producer/topic/consumer/payload/retry/DLQ/idempotency.
 Best for: Kafka, MQ, callback-heavy systems.
-Typical outputs: async contract page, producer/topic/consumer mapping, DLQ/idempotency summary.
+Typical outputs: async contract page, producer/topic/consumer mapping, DLQ/idempotency summary, producer/topic/consumer route diagram.
 
 ### `enable_external_dependency_dossier`
 
@@ -350,9 +375,7 @@ Use $backend-service-spec-skill as the base workflow, enable $cross-tech-stack-s
 ## 13. Read Next
 
 - [Command Output Map](./command-output-map.md)
+- [Diagram Output Guidelines](./diagram-output-guidelines.md)
 - [Usage And Differences](./usage-and-differences.md)
 - [Optional Switch-Controlled Extensions](./optional-switch-controlled-extensions.md)
 - [High-Priority Optional Switch Templates](./priority-switch-templates.md)
-
-
-

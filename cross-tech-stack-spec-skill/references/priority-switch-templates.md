@@ -32,6 +32,7 @@ Expected output focus:
 - response field table
 - enum source note
 - unresolved field note
+- interface mapping diagram when evidence supports it
 
 ## 2. `enable_gateway_map`
 
@@ -57,6 +58,7 @@ Expected output focus:
 - rewrite / forward chain
 - auth and policy checkpoints
 - unresolved routing gaps
+- gateway forwarding diagram
 
 ## 3. `enable_field_lineage`
 
@@ -82,6 +84,7 @@ Expected output focus:
 - field lineage table
 - transformation and rename notes
 - unresolved lineage gaps
+- field movement diagram when useful
 
 ## 4. `enable_context_propagation_map`
 
@@ -107,6 +110,7 @@ Expected output focus:
 - header/context propagation table
 - injection and rewrite points
 - unresolved propagation gaps
+- context propagation diagram
 
 ## 5. `enable_error_semantics`
 
@@ -132,6 +136,7 @@ Expected output focus:
 - failure path notes
 - retry / fallback / compensation notes
 - unresolved failure gaps
+- failure-path sequence diagram when useful
 
 ## 6. `enable_async_contract_map`
 
@@ -157,6 +162,7 @@ Expected output focus:
 - payload schema notes
 - retry / DLQ / idempotency notes
 - unresolved async gaps
+- producer/topic/consumer route diagram
 
 ## 7. `enable_external_dependency_dossier`
 
@@ -213,3 +219,5 @@ Expected output focus:
 Do not enable these switches implicitly.
 
 If the user does not explicitly request them, keep the default outputs unchanged.
+
+When one of these switches is explicitly enabled in a standard output run, generate the companion diagram by default when evidence and scope support it.

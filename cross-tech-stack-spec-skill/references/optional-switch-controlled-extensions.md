@@ -29,6 +29,7 @@ Useful outputs:
 - response field table
 - enum source note
 - unresolved field note
+- interface mapping diagram when evidence supports it
 
 Best for:
 
@@ -48,6 +49,7 @@ Useful outputs:
 - rewrite chain
 - auth or traffic-control checkpoints
 - final destination note
+- gateway forwarding diagram
 
 Best for:
 
@@ -66,6 +68,7 @@ Useful outputs:
 - field lineage table
 - transformation points
 - name mismatch notes
+- field movement diagram when useful
 
 Best for:
 
@@ -86,6 +89,7 @@ Useful outputs:
 - auth/context injection points
 - trace context path
 - unresolved propagation gaps
+- context propagation diagram
 
 Best for:
 
@@ -107,6 +111,7 @@ Useful outputs:
 - failure path notes
 - retry / fallback / compensation notes
 - unresolved failure gaps
+- failure-path sequence diagram when useful
 
 Best for:
 
@@ -128,6 +133,7 @@ Useful outputs:
 - payload schema notes
 - retry / DLQ / idempotency notes
 - unresolved async gaps
+- producer/topic/consumer route diagram
 
 Best for:
 
@@ -230,6 +236,11 @@ If the user does not enable them:
 - do not add the deeper pages by default
 - do not expand the default workflow
 - do not change the stable baseline outputs
+
+When a switch is enabled in a standard output run:
+
+- generate the companion diagram by default when the evidence and scope support a responsible diagram
+- only omit the diagram when the scope is tiny, the evidence is too weak, or the user explicitly requests text-only output
 
 ## 6. Currently Available Priority Templates
 

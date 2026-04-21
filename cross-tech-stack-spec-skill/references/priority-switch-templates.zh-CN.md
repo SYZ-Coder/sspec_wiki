@@ -32,6 +32,7 @@
 - response field table
 - enum source note
 - unresolved field note
+- 证据充分时补接口映射图
 
 ## 2. `enable_gateway_map`
 
@@ -57,6 +58,7 @@
 - rewrite / forward chain
 - auth and policy checkpoints
 - unresolved routing gaps
+- gateway 转发图
 
 ## 3. `enable_field_lineage`
 
@@ -82,6 +84,7 @@
 - field lineage table
 - transformation and rename notes
 - unresolved lineage gaps
+- 必要时补字段流转图
 
 ## 4. `enable_context_propagation_map`
 
@@ -107,6 +110,7 @@
 - header/context propagation table
 - injection and rewrite points
 - unresolved propagation gaps
+- 上下文传播图
 
 ## 5. `enable_error_semantics`
 
@@ -132,6 +136,7 @@
 - failure path notes
 - retry / fallback / compensation notes
 - unresolved failure gaps
+- 必要时补失败链路时序图
 
 ## 6. `enable_async_contract_map`
 
@@ -157,6 +162,7 @@
 - payload schema notes
 - retry / DLQ / idempotency notes
 - unresolved async gaps
+- producer/topic/consumer 链路图
 
 ## 7. `enable_external_dependency_dossier`
 
@@ -217,3 +223,5 @@
 - 不要默认补这几页
 - 不要改变当前稳定基线输出
 - 不要把它们并进主流程
+
+如果用户显式开启了其中某个开关，并且本次按标准产物执行，在证据和范围足以支撑时，应默认一并生成对应图产物。

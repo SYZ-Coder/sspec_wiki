@@ -160,6 +160,27 @@
 - 看稳定业务域沉淀：最后用 `build_domain_map`
 - 看混合栈项目：以 `$backend-service-spec-skill` 为主流程，再启用 `$cross-tech-stack-spec-skill`
 
+## `cross-tech-stack-spec-skill` 图产物速览
+
+当扩展技能按标准产物执行混合栈梳理时，通常应把正文页与配套 Markdown/Mermaid 图一并生成。
+
+常见默认图包括：
+
+- 混合栈架构图
+- 跨层调用关系图
+- 当 page / app / backend / task / callback / bridge 链路需要明确先后顺序时，补时序图
+- 开启 `enable_contract_map` 且证据足够时，补接口映射图
+- 开启 `enable_gateway_map` 时，补网关转发图
+- 开启 `enable_context_propagation_map` 时，补上下文传播图
+- 开启 `enable_async_contract_map` 时，补 producer/topic/consumer 链路图
+
+进一步阅读：
+
+- [扩展技能 README](./cross-tech-stack-spec-skill/README.zh-CN.md)
+- [扩展技能命令产物对照](./cross-tech-stack-spec-skill/references/command-output-map.zh-CN.md)
+- [图产物输出规范](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.zh-CN.md)
+- [图产物示例模板](./cross-tech-stack-spec-skill/references/diagram-output-example-template.zh-CN.md)
+
 ## 开源配套文件
 
 当前仓库也补充了与技能使用直接相关的配套文档：
@@ -228,6 +249,7 @@
 - 混合栈噪音控制
 - 通信证据等级
 - 接口对照页
+- 混合栈架构图与跨层调用图
 - 混合栈业务域页
 - 增量更新模式
 - 8 个可选开关式深度增强页
@@ -238,6 +260,7 @@
 - [扩展技能详细使用说明](./cross-tech-stack-spec-skill/references/extension-usage-guide.zh-CN.md)
 - [扩展技能命令产物对照](./cross-tech-stack-spec-skill/references/command-output-map.zh-CN.md)
 - [扩展技能命令速查表](./cross-tech-stack-spec-skill/references/command-output-scenario-quickref.zh-CN.md)
+- [图产物输出规范](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.zh-CN.md)
 - [全量完整模式](./references/full-analysis-mode.zh-CN.md)
 - [可选开关式扩展说明](./cross-tech-stack-spec-skill/references/optional-switch-controlled-extensions.zh-CN.md)
 - [扩展技能 README](./cross-tech-stack-spec-skill/README.zh-CN.md)

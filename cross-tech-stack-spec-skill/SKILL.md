@@ -41,6 +41,7 @@ When this skill is active:
 - keep the original four function ideas: `create_codemap`, `build_domain_map`, `crate_router_map`, `service_deep_dive`
 - reinterpret them in a stack-neutral way
 - prefer project/module/page/task/component/bridge wording over backend-only service wording when the codebase requires it
+- treat cross-layer diagrams as first-class outputs, using Markdown + Mermaid instead of image-only artifacts
 - keep fact/clue discipline exactly as strict as in the existing backend-service-spec-skill workflow
 
 ## Stack-Neutral Mapping
@@ -93,6 +94,26 @@ When maintaining an existing knowledge base:
 - read `references/incremental-update-mode.md`
 - update only the affected scope and record impacted documents
 
+## Diagram Output Extension
+
+When the target is mixed-stack, this extension skill should also support diagram outputs for:
+
+- global mixed-stack architecture
+- cross-layer call graph
+- sequence flow across page/app/backend/task/callback/bridge boundaries
+- runtime dependency graph versus code dependency graph
+- caller-to-handler interface mapping
+- context propagation
+- gateway forwarding
+- async contract routes
+
+Default rules:
+
+- prefer embedding diagrams directly into the corresponding document
+- use `mydocs/diagrams/` only when the diagram needs reuse across documents, independent frequent updates, centralized asset management/export, or the user explicitly asks for diagram/text separation
+- if a diagram is split into `mydocs/diagrams/`, keep a short explanation and direct link in the parent document
+- use labels on edges such as `HTTP`, `Gateway`, `Bridge`, `MQ`, `Callback`, `Local dependency`, or `Runtime invocation` to avoid mixed-stack ambiguity
+
 ## Stack Selection
 
 - For Android / iOS / Flutter / React Native / uni-app / Taro: read `references/mobile-project-guidelines.md`
@@ -106,6 +127,7 @@ When maintaining an existing knowledge base:
 - For incremental refreshes: read `references/incremental-update-mode.md`
 - For base vs extension cooperation boundaries: read `references/base-vs-extension-boundaries.md`
 - For activation boundary and cooperation with the backend-service-spec-skill: read `references/activation-and-boundaries.md`
+- For diagram output rules and mixed-stack Mermaid patterns: read `references/diagram-output-guidelines.md`
 
 ## Output Rules
 
@@ -125,5 +147,4 @@ When maintaining an existing knowledge base:
 
 Use this skill alongside the backend-service-spec-skill, not as a replacement.
 It is an opt-in extension for cross-tech-stack analysis.
-
 

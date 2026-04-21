@@ -7,6 +7,11 @@
 - 推荐放在哪个目录
 - 适合什么场景
 
+默认规则：
+
+- 当扩展技能或其标准开关按标准产物执行时，默认应一并产出配套 mixed-stack 图
+- 只有在范围极小、证据不足以负责任画图，或用户明确要求纯文字输出时，才可以省略图
+
 ## 1. 启用扩展技能，不开可选开关
 
 命令：
@@ -22,6 +27,8 @@
 - 通信证据矩阵页
 - 接口对照页
 - 混合栈关键链路页
+- 混合栈架构图（Markdown + Mermaid）
+- 跨层调用关系图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -45,6 +52,7 @@ mydocs/routermap/
 - 请求参数表
 - 响应字段表
 - caller / handler 对照页
+- 接口映射图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -66,6 +74,7 @@ mydocs/extensions/
 - gateway route 清单
 - rewrite / auth 摘要页
 - 落点对照页
+- gateway 转发图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -87,6 +96,7 @@ mydocs/routermap/
 - 字段血缘页
 - 字段流转表
 - rename / transform 记录页
+- 必要时补字段流转图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -107,6 +117,7 @@ mydocs/extensions/
 - 上下文透传页
 - header / token / userId / tenantId / traceId 透传表
 - 改写点 / gap 清单
+- 上下文传播图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -127,6 +138,7 @@ mydocs/extensions/
 - 失败语义页
 - 错误码映射表
 - retry / fallback / compensation 摘要页
+- 必要时补失败链路时序图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -147,6 +159,7 @@ mydocs/extensions/
 - 异步契约页
 - producer -> topic/queue -> consumer 映射页
 - payload/schema 线索页
+- producer/topic/consumer 链路图（Markdown + Mermaid）
 
 推荐目录：
 
@@ -214,6 +227,10 @@ mydocs/validation/
 - 多份 router-map 页
 - 接口对照页
 - 8 类开关细化页
+- 混合栈架构图
+- 多份跨层调用关系图
+- 多份时序图
+- mixed-stack 接口 / gateway / 上下文 / 异步图
 - 混合栈业务域页
 - 验证页
 - 未闭环清单
@@ -225,7 +242,7 @@ mydocs/validation/
 mydocs/
   workspace/
   codemap/
-  services/
+  projects/
   routermap/
   domain/
   extensions/

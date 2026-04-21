@@ -8,6 +8,13 @@
 - 不显式开启的可选开关，不应默认输出对应细化页
 - 如果只有单边证据，要明确写成 `partially closed`、`clue-level` 或 `unresolved`
 
+图放置规则：
+
+- 默认优先把图直接内嵌到对应正文文档
+- 只有在图需要跨文档复用、需要独立高频更新、需要集中资产管理或导出，或用户明确要求图文分离时，才使用 `mydocs/diagrams/`
+- 如果图拆分到了 `mydocs/diagrams/`，正文中仍应保留简短说明，并附上该图的直接链接
+- mixed-stack 图应显式标注边类型，例如 `HTTP`、`Gateway`、`Bridge`、`MQ`、`Callback`、`Local dependency`、`Runtime invocation`
+
 ## 1. 启用扩展技能但不开任何开关
 
 推荐命令：
@@ -24,6 +31,8 @@
 - 接口对照页
 - 混合栈关键链路页
 - 混合栈业务域页
+- 混合栈架构图（Markdown + Mermaid）
+- 跨层调用关系图（Markdown + Mermaid）
 
 ## 2. `enable_contract_map`
 
@@ -34,6 +43,7 @@
 - 响应字段表
 - caller / handler 契约对照页
 - unresolved 字段清单
+- 接口映射图（Markdown + Mermaid）
 
 ## 3. `enable_gateway_map`
 
@@ -43,6 +53,7 @@
 - gateway route 清单
 - path rewrite / 鉴权点摘要页
 - gateway -> handler 落点对照页
+- gateway 转发图（Markdown + Mermaid）
 
 ## 4. `enable_field_lineage`
 
@@ -52,6 +63,7 @@
 - caller -> DTO -> service -> downstream 字段流转表
 - rename / transform 记录页
 - unresolved lineage gaps 清单
+- 必要时补字段流转图（Markdown + Mermaid）
 
 ## 5. `enable_context_propagation_map`
 
@@ -61,6 +73,7 @@
 - header / token / userId / tenantId / traceId 透传表
 - 注入点与改写点清单
 - propagation gap 清单
+- 上下文传播图（Markdown + Mermaid）
 
 ## 6. `enable_error_semantics`
 
@@ -70,6 +83,7 @@
 - 错误码/异常映射表
 - retry / fallback / compensation 摘要页
 - 未闭环失败路径清单
+- 必要时补失败链路时序图（Markdown + Mermaid）
 
 ## 7. `enable_async_contract_map`
 
@@ -79,6 +93,7 @@
 - producer -> topic/queue -> consumer 映射页
 - payload/schema 线索页
 - retry / DLQ / idempotency 摘要页
+- producer/topic/consumer 链路图（Markdown + Mermaid）
 
 ## 8. `enable_external_dependency_dossier`
 
@@ -114,6 +129,10 @@
 - 上下文透传页
 - 失败语义页
 - 异步契约页
+- 混合栈架构图
+- 多份跨层调用关系图
+- 多份时序图
+- mixed-stack 接口 / gateway / 上下文 / 异步图
 - 外部依赖档案页
 - 验证资产页
 - 混合栈业务域页

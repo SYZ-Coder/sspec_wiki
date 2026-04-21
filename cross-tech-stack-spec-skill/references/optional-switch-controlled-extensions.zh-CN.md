@@ -34,6 +34,7 @@
 - response field table
 - enum source note
 - unresolved field note
+- 证据充分时补接口映射图
 
 适合场景：
 
@@ -53,6 +54,7 @@
 - rewrite chain
 - auth / traffic-control checkpoints
 - final destination note
+- gateway 转发图
 
 适合场景：
 
@@ -71,6 +73,7 @@
 - field lineage table
 - transformation points
 - name mismatch notes
+- 必要时补字段流转图
 
 适合场景：
 
@@ -91,6 +94,7 @@
 - auth/context injection points
 - trace context path
 - unresolved propagation gaps
+- 上下文传播图
 
 适合场景：
 
@@ -112,6 +116,7 @@
 - failure path notes
 - retry / fallback / compensation notes
 - unresolved failure gaps
+- 必要时补失败链路时序图
 
 适合场景：
 
@@ -133,6 +138,7 @@
 - payload schema notes
 - retry / DLQ / idempotency notes
 - unresolved async gaps
+- producer/topic/consumer 链路图
 
 适合场景：
 
@@ -235,6 +241,11 @@
 - 不要默认补这些深度页
 - 不要扩展当前稳定主流程
 - 不要改变现有已稳定的基线输出
+
+如果用户显式开启了某个开关，且本次按标准产物执行：
+
+- 在证据和范围足以负责任成图时，默认应一并生成该开关对应的配套图
+- 只有在范围极小、证据太弱，或用户明确要求纯文字输出时，才可以省略图
 
 ## 6. 当前已落地的优先模板
 

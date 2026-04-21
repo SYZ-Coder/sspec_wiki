@@ -26,6 +26,7 @@
 - 混合栈噪音控制
 - 通信证据等级
 - 接口对照页
+- mixed-stack 架构图与跨层调用图
 - 混合栈业务域页
 - 增量更新模式
 
@@ -45,6 +46,26 @@
 - `enable_interface_verification_assets`
 
 这些开关默认关闭，只有用户明确要求时才会生效。
+
+### 图产物默认规则
+
+按标准产物执行时，这个扩展技能默认也应一并生成配套 mixed-stack 图。
+
+常见默认图包括：
+
+- 混合栈架构图
+- 跨层调用关系图
+- 当链路或失败路径需要明确先后顺序时补时序图
+- 当开启了相应开关且证据足够时，补接口映射图、gateway 转发图、上下文传播图、异步链路图等
+
+只有在以下情况才可以省略图：
+
+- 范围太小，不值得负责任地单独成图
+- 证据太弱，不足以支撑可靠成图
+- 用户明确要求纯文字输出
+
+默认应优先把图内嵌到对应正文。
+只有在跨文档复用、需要独立高频更新、需要集中导出/管理，或用户明确要求图文分离时，才拆到 `mydocs/diagrams/`。
 
 ## 3. 什么时候使用这个扩展技能
 
@@ -114,6 +135,8 @@
 - 通信证据矩阵页
 - 接口对照页
 - 混合栈关键链路页
+- 混合栈架构图
+- 跨层调用关系图
 
 ## 7. 全部开启怎么用
 
@@ -158,19 +181,21 @@
 2. 排除项 / 延后项
 3. codemap
 4. router-map
-5. 接口对照页
-6. 契约细化页
-7. 字段血缘页
-8. 上下文透传页
-9. 失败语义页
-10. 异步契约页
-11. 外部依赖档案页
-12. 验证资产页
-13. 业务域页
+5. 混合栈架构图与关键跨层调用关系图
+6. 接口对照页
+7. 契约细化页
+8. 字段血缘页
+9. 上下文透传页
+10. 失败语义页
+11. 异步契约页
+12. 外部依赖档案页
+13. 验证资产页
+14. 业务域页
 
 完整命令产物对照请看：
 
 - [命令产物对照](./command-output-map.zh-CN.md)
+- [图产物输出规范](./diagram-output-guidelines.zh-CN.md)
 
 ### 全开的注意事项
 
@@ -267,37 +292,37 @@
 
 作用：细化请求/响应契约。
 适合：联调、字段解释不清、接口参数复杂。
-常见产物：契约细化页、请求参数表、响应字段表。
+常见产物：契约细化页、请求参数表、响应字段表、接口映射图。
 
 ### `enable_gateway_map`
 
 作用：梳理 gateway/BFF/转发/路径重写。
 适合：网关转发复杂、请求路径对不上。
-常见产物：网关转发页、route 清单、落点对照页。
+常见产物：网关转发页、route 清单、落点对照页、gateway 转发图。
 
 ### `enable_field_lineage`
 
 作用：追踪关键字段在多层之间的流转。
 适合：DTO 很大、字段重命名多、排查字段来源。
-常见产物：字段血缘页、字段流转表、rename/transform 记录页。
+常见产物：字段血缘页、字段流转表、rename/transform 记录页，必要时补字段流转图。
 
 ### `enable_context_propagation_map`
 
 作用：梳理 token/userId/tenantId/traceId 等上下文透传。
 适合：登录态、租户态、trace 排障、header 争议。
-常见产物：上下文透传页、header 透传表、gap 清单。
+常见产物：上下文透传页、header 透传表、gap 清单、上下文传播图。
 
 ### `enable_error_semantics`
 
 作用：梳理错误码、失败路径、重试、降级、补偿。
 适合：线上问题、失败链路、异常翻译复杂。
-常见产物：失败语义页、错误码映射表、补偿/重试摘要页。
+常见产物：失败语义页、错误码映射表、补偿/重试摘要页，必要时补失败链路时序图。
 
 ### `enable_async_contract_map`
 
 作用：梳理 producer/topic/consumer/payload/retry/DLQ/幂等。
 适合：Kafka/MQ/callback 重场景。
-常见产物：异步契约页、producer/topic/consumer 映射页、DLQ/幂等摘要页。
+常见产物：异步契约页、producer/topic/consumer 映射页、DLQ/幂等摘要页、producer/topic/consumer 链路图。
 
 ### `enable_external_dependency_dossier`
 
@@ -311,7 +336,7 @@
 适合：onboarding、联调准备、测试资料盘点。
 常见产物：验证资产页、资产位置清单、覆盖情况页。
 
-## 9. 推荐组合
+## 10. 推荐组合
 
 最常见推荐组合：
 
@@ -321,7 +346,7 @@
 - 异步治理组合：`enable_async_contract_map + enable_error_semantics`
 - 知识库治理组合：`enable_external_dependency_dossier + enable_interface_verification_assets`
 
-## 10. 默认边界
+## 11. 默认边界
 
 无论怎么使用，都要遵守这些边界：
 
@@ -331,7 +356,7 @@
 - 不要超出代码证据做业务推断
 - 如果只有单边证据，要明确标成 unresolved / clue-level only
 
-## 11. 推荐的真实使用顺序
+## 12. 推荐的真实使用顺序
 
 ### 首次梳理
 
@@ -345,7 +370,7 @@
 2. 再决定这次是否需要补开某个开关
 3. 只更新受影响页面，不要每次全量重跑
 
-## 12. 最简命令清单
+## 13. 最简命令清单
 
 ### 最简主流程
 
@@ -365,12 +390,10 @@
 请以 $backend-service-spec-skill 为主流程，并启用 $cross-tech-stack-spec-skill，同时开启 enable_contract_map + enable_field_lineage，对目标链路做细化梳理。
 ```
 
-## 13. 建议继续阅读
+## 14. 建议继续阅读
 
 - [命令产物对照](./command-output-map.zh-CN.md)
+- [图产物输出规范](./diagram-output-guidelines.zh-CN.md)
 - [用法与区别说明](./usage-and-differences.zh-CN.md)
 - [可选开关式接口扩展](./optional-switch-controlled-extensions.zh-CN.md)
 - [高优先级可选开关模板](./priority-switch-templates.zh-CN.md)
-
-
-

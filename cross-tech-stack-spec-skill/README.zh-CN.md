@@ -42,6 +42,28 @@
 - 全量模式会显著增加 token 消耗
 - 对大型工作区，也会显著增加扫描时长和产物规模
 
+## 图产物支持
+
+这个扩展技能中的 mixed-stack 图产物，应视为一等输出，而不是可有可无的附加品。
+推荐统一使用 `Markdown + Mermaid`，这样对人和 AI 都更稳定可读。
+
+推荐图类型：
+
+- 全局混合栈架构图
+- 跨层调用关系图
+- page / app / backend / task / callback / bridge 时序图
+- 代码依赖图与运行时依赖图
+- 接口映射图
+- 上下文传播图
+- gateway 转发图
+- 异步契约链路图
+
+默认触发规则：
+
+- 当这个扩展技能按标准产物执行时，配套 mixed-stack 图默认应一并产出
+- 正常情况下，用户不需要每次重复写“请生成图”
+- 图默认优先内嵌到对应正文；只有在跨文档复用、独立高频更新、集中管理/导出，或明确图文分离时才拆到 `mydocs/diagrams/`
+
 ## 通信梳理可信度说明
 
 当目标包含通信梳理时，这个技能推荐输出“通信矩阵 + 数量依据 + 证据等级 + closure state + 代码位置”，以提高结果可信度。
@@ -68,25 +90,29 @@
 
 ## 各命令和开关会产出什么
 
-- 启用扩展技能但不开开关：通常得到工作区分层页、通信证据矩阵页、接口对照页、混合栈关键链路页
-- `enable_contract_map`：通常得到契约细化页、请求/响应字段表
-- `enable_gateway_map`：通常得到网关/转发链路页
-- `enable_field_lineage`：通常得到字段血缘页
-- `enable_context_propagation_map`：通常得到上下文透传页
-- `enable_error_semantics`：通常得到失败语义页
-- `enable_async_contract_map`：通常得到异步契约页
+- 启用扩展技能但不开开关：通常得到工作区分层页、通信证据矩阵页、接口对照页、混合栈关键链路页、混合栈架构图、跨层调用关系图
+- `enable_contract_map`：通常得到契约细化页、请求/响应字段表、接口映射图
+- `enable_gateway_map`：通常得到网关/转发链路页、gateway 转发图
+- `enable_field_lineage`：通常得到字段血缘页，必要时补字段流转图
+- `enable_context_propagation_map`：通常得到上下文透传页、上下文传播图
+- `enable_error_semantics`：通常得到失败语义页，必要时补失败链路时序图
+- `enable_async_contract_map`：通常得到异步契约页、producer/topic/consumer 链路图
 - `enable_external_dependency_dossier`：通常得到外部依赖档案页
 - `enable_interface_verification_assets`：通常得到验证资产页
 
 完整对照请看：
 
 - [命令产物对照](./references/command-output-map.zh-CN.md)
+- [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
+- [图产物示例模板](./references/diagram-output-example-template.zh-CN.md)
 
 ## 建议继续阅读
 
 - [详细使用说明](./references/extension-usage-guide.zh-CN.md)
 - [命令产物对照](./references/command-output-map.zh-CN.md)
 - [命令速查表](./references/command-output-scenario-quickref.zh-CN.md)
+- [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
+- [图产物示例模板](./references/diagram-output-example-template.zh-CN.md)
 - [全量完整模式](../references/full-analysis-mode.zh-CN.md)
 - [用法与区别说明](./references/usage-and-differences.zh-CN.md)
 - [基础技能与扩展技能边界](./references/base-vs-extension-boundaries.md)
