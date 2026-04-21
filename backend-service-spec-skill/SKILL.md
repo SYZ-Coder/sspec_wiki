@@ -245,6 +245,7 @@ mydocs/
   services/
   domains/
   routermap/
+  diagrams/
   context/
   specs/
   validation/
@@ -257,6 +258,7 @@ mydocs/
 - `mydocs/services/`：单服务纵切知识页
 - `mydocs/domains/`：业务域上卷页
 - `mydocs/routermap/`：跨服务通信链路层
+- `mydocs/diagrams/`：图产物层，统一放 Markdown 内嵌 Mermaid 的架构图、调用关系图、依赖图、时序图
 - `mydocs/context/`：上下文资料与补充材料
 - `mydocs/specs/`：Research / Plan / Review 等过程文档
 - `mydocs/validation/`：闭环验证、未闭环清单、质量检查页
@@ -273,6 +275,7 @@ mydocs/
 - `references/quality-checklist.md`
 - `references/usage-guide.md`
 - `references/output-templates.md`
+- `references/diagram-output-guidelines.md`
 
 ## 8. 输出风格
 
@@ -281,6 +284,9 @@ mydocs/
 - 文件命名稳定，可长期复用
 - 目录适合中央仓库团队协作
 - 文档默认面向“团队知识复用”，不是一次性分析笔记
+- 图产物默认使用 `Markdown + Mermaid`，图片只作为派生结果，不替代源文件
+- 图产物默认优先内嵌到对应正文；只有在需要跨文档复用、独立高频更新、集中导出管理，或用户明确要求图文分离时，才拆到 `mydocs/diagrams/`
+- 如果图拆到 `mydocs/diagrams/`，正文里仍需保留简短说明和直接链接，保证上下文可读
 
 ## 7.5 新增规则页
 

@@ -8,9 +8,9 @@ Its goal is not one-off analysis. It is designed to turn code facts, service bou
 
 The directory name is `backend-service-spec-skill`, so it is easier to distinguish from the cross-tech-stack extension skill.
 
-But the actual skill invocation name remains:
+But the actual skill invocation name is:
 
-- `backend-service-spec-skill`
+- `$backend-service-spec-skill`
 
 That means users should still say:
 
@@ -26,6 +26,7 @@ If you want the shortest starting point, read:
 - [Personal Workflow For Backend-Microservice Projects](./references/personal-workflow.md)
 - [Command Output Map](./references/command-output-map.md)
 - [Command Quick Reference](./references/command-output-scenario-quickref.md)
+- [Diagram Output Guidelines](./references/diagram-output-guidelines.md)
 
 ## When To Use It
 
@@ -227,6 +228,44 @@ service_deep_dive: scope=<service-name>, goal=<deep-dive-goal>
 - `crate_router_map`: index-layer outputs such as key route pages, synchronous/asynchronous route segments, and closure status
 - `build_domain_map`: stable knowledge pages for one domain, such as domain -> service -> spec mapping and domain-level rules
 
+## Diagram Output Support
+
+This skill can now treat diagrams as first-class outputs, but the recommended format is not image-only output.
+
+Preferred format:
+
+- `.md` files with embedded Mermaid
+- a short note below the diagram describing node meaning, edge meaning, evidence sources, and unresolved gaps
+
+Default trigger rule:
+
+- when a core command is executed as a standard output run, the companion diagrams should be produced by default
+- users do not need to explicitly repeat "generate diagrams" unless they want to constrain diagram scope or format further
+- diagrams may be skipped only for very small scope, insufficient evidence, or explicit text-only requests
+
+Recommended diagram layout:
+
+```text
+mydocs/diagrams/
+  architecture/
+  call-graph/
+  upstream-downstream/
+  sequence/
+```
+
+Command-to-diagram mapping:
+
+- `create_codemap`: architecture diagram + service call graph
+- `service_deep_dive`: upstream/downstream dependency diagram + internal module architecture diagram
+- `crate_router_map`: sequence diagram + route call graph
+- `build_domain_map`: domain context diagram
+
+Why this format is preferred:
+
+- AI can reliably read Markdown and Mermaid source
+- the diagram stays editable and incrementally maintainable
+- PNG / SVG can still be exported later if people need a visual asset
+
 See the full mapping here:
 
 - [Command Output Map](./references/command-output-map.md)
@@ -293,6 +332,7 @@ If the team uses a central knowledge repository, read next:
 - [Usage Guide](./references/usage-guide.md)
 - [Quality Checklist](./references/quality-checklist.md)
 - [Output Templates](./references/output-templates.md)
+- [Diagram Output Guidelines](./references/diagram-output-guidelines.md)
 - [Workspace Classification](./references/workspace-classification.md)
 
 ## Relationship To The Extension Skill

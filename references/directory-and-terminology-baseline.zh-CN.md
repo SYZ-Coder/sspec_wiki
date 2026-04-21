@@ -14,6 +14,7 @@ mydocs/
   services/
   domains/
   routermap/
+  diagrams/
   context/
   specs/
   validation/
@@ -26,6 +27,7 @@ mydocs/
 - `mydocs/services/`：稳定知识层，放单服务纵切知识页
 - `mydocs/domains/`：稳定知识层，放业务域上卷知识页
 - `mydocs/routermap/`：索引层，放跨服务通信链路、接口链路、消息链路
+- `mydocs/diagrams/`：索引层，放 Markdown 内嵌 Mermaid 的架构图、调用关系图、上下游依赖图、时序图
 - `mydocs/context/`：过程层，放上下文包、补充材料、家族上下文页
 - `mydocs/specs/`：过程层，放 research / plan / review / 规则型补充页
 - `mydocs/validation/`：过程层，放验证页、未闭环清单、质量检查页
@@ -37,6 +39,13 @@ mydocs/
 - `service_deep_dive` -> `mydocs/services/<service>/`
 - `build_domain_map` -> `mydocs/domains/<domain>/`
 - `crate_router_map` -> `mydocs/routermap/`
+
+图类产物统一落在：
+
+- `mydocs/diagrams/architecture/`
+- `mydocs/diagrams/call-graph/`
+- `mydocs/diagrams/upstream-downstream/`
+- `mydocs/diagrams/sequence/`
 
 ## 3. 统一术语基线
 
@@ -56,6 +65,7 @@ mydocs/
 
 - `mydocs/codemap/`
 - `mydocs/routermap/`
+- `mydocs/diagrams/`
 
 ### 3.2 稳定知识层
 
@@ -126,3 +136,29 @@ openspec/specs/
 - `references/mydocs-to-central-knowledge-repo*`
 
 如果新增文档涉及产物目录、模板落点、中央知识库导入说明，也应引用本文规则。
+
+## 7. 图产物基线
+
+为了让 AI 稳定复用图信息，图类产物默认使用 `Markdown + Mermaid`，而不是只输出图片。
+
+推荐规则：
+
+- 图文件默认使用 `.md`
+- 图内容使用 fenced code block 包裹 Mermaid
+- 图下方补一段文字说明节点含义、边含义、证据来源与未闭环项
+- 如需导出 PNG / SVG，可作为派生结果，但不应替代 `.md` 源文件
+
+放置规则：
+
+- 默认应把图直接内嵌到对应正文文档
+- 只有在图需要跨文档复用、需要独立高频更新、需要集中导出或管理，或用户明确要求图文分离时，才使用 `mydocs/diagrams/`
+- 如果图拆分到了 `mydocs/diagrams/`，对应正文中仍应保留简短说明，并附上该图的直接链接，保证 AI 和人工阅读时上下文不断裂
+
+推荐文件示例：
+
+```text
+mydocs/diagrams/architecture/<scope>-architecture.md
+mydocs/diagrams/call-graph/<scope>-call-graph.md
+mydocs/diagrams/upstream-downstream/<service>-dependencies.md
+mydocs/diagrams/sequence/<flow>-sequence.md
+```

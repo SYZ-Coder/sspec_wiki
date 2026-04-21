@@ -35,6 +35,11 @@ Users should still type `$backend-service-spec-skill` in commands.
 - `crate_router_map`: trace one real request or message chain
 - `service_deep_dive`: document one service in depth
 
+Default expectation:
+
+- in a standard run, each core command should also produce its companion diagrams in `Markdown + Mermaid`
+- users do not need to repeat "please generate diagrams" every time
+
 ## 4. How To Start The First Time
 
 ### If you want the system landscape first
@@ -103,10 +108,10 @@ build_domain_map: scope=<system>, goal=<output domain -> service -> standard>
 
 ## 7. Typical Outputs Per Command
 
-- `create_codemap`: service inventory, service relationship overview, technology/module layering
-- `service_deep_dive`: single-service structure page, interface inventory, dependency page, rules/spec page
-- `crate_router_map`: key route page, sync/async route page, closure status page
-- `build_domain_map`: domain page, domain -> service -> standard mapping
+- `create_codemap`: service inventory, service relationship overview, technology/module layering, architecture diagram, service call graph
+- `service_deep_dive`: single-service structure page, interface inventory, dependency page, rules/spec page, upstream/downstream dependency diagram, module architecture diagram
+- `crate_router_map`: key route page, sync/async route page, closure status page, sequence diagram, route call graph
+- `build_domain_map`: domain page, domain -> service -> standard mapping, domain context diagram
 
 See the full mapping here:
 

@@ -59,6 +59,7 @@ Typical outputs:
 - service boundaries
 - upstream/downstream dependencies
 - service-landscape overview pages
+- architecture diagram and service call graph by default in a standard run
 
 Read more:
 
@@ -78,6 +79,7 @@ Typical outputs:
 - interface inventory
 - dependency pages
 - service rule or convention pages
+- upstream/downstream dependency diagram and module architecture diagram by default in a standard run
 
 Read more:
 
@@ -96,6 +98,7 @@ Typical outputs:
 - key route-chain pages
 - sync/async split views
 - closure-status pages
+- sequence diagram and route call graph by default in a standard run
 
 Read more:
 
@@ -114,6 +117,12 @@ Typical outputs:
 - business-domain pages
 - domain-to-service mapping pages
 - domain-level rule pages
+- domain context diagram by default in a standard run
+
+Default output rule:
+
+- for the four backend core commands, a standard-output run now means `text pages + companion Markdown/Mermaid diagrams`
+- users only need to call out diagrams separately when they want narrower scope, special naming, or text-only output
 
 Read more:
 
@@ -258,7 +267,8 @@ Use $backend-service-spec-skill as the base workflow, and enable $cross-tech-sta
 ### Backend skill only
 
 ```text
-Use $backend-service-spec-skill to analyze this backend microservice project.
+Use $backend-service-spec-skill to analyze this backend microservice project with standard outputs.
+Generate the normal text pages and companion Markdown/Mermaid diagrams together.
 ```
 
 ### Backend lightweight full
@@ -270,7 +280,8 @@ Requirements:
 2. run create_codemap
 3. run service_deep_dive on 1 to 2 high-value services
 4. run crate_router_map on 1 to 2 key chains
-5. stay strictly grounded in code facts
+5. generate standard outputs, including companion Markdown/Mermaid diagrams by default
+6. stay strictly grounded in code facts
 ```
 
 ### Backend heavy full
@@ -283,8 +294,9 @@ Requirements:
 3. run service_deep_dive on multiple high-value services
 4. run crate_router_map on multiple key chains
 5. run build_domain_map last
-6. output validation pages and unresolved-chain summaries
-7. stay strictly grounded in code facts
+6. generate standard outputs, including companion Markdown/Mermaid diagrams by default
+7. output validation pages and unresolved-chain summaries
+8. stay strictly grounded in code facts
 ```
 
 ### Extension skill only
@@ -297,12 +309,14 @@ Use $cross-tech-stack-spec-skill to analyze this mixed-stack project.
 
 ```text
 Use $backend-service-spec-skill as the base workflow, and enable $cross-tech-stack-spec-skill for mixed-stack adaptation.
+Generate standard outputs and companion Markdown/Mermaid diagrams together.
 ```
 
 ### Extension skill with all optional switches enabled
 
 ```text
 Use $backend-service-spec-skill as the base workflow, enable $cross-tech-stack-spec-skill, and turn on enable_contract_map + enable_gateway_map + enable_field_lineage + enable_context_propagation_map + enable_error_semantics + enable_async_contract_map + enable_external_dependency_dossier + enable_interface_verification_assets for a full enhanced analysis.
+Generate standard outputs and companion Markdown/Mermaid diagrams together.
 ```
 
 ### Full analysis mode
@@ -310,7 +324,7 @@ Use $backend-service-spec-skill as the base workflow, enable $cross-tech-stack-s
 ```text
 Use $backend-service-spec-skill as the base workflow, enable $cross-tech-stack-spec-skill,
 turn on enable_contract_map + enable_gateway_map + enable_field_lineage + enable_context_propagation_map + enable_error_semantics + enable_async_contract_map + enable_external_dependency_dossier + enable_interface_verification_assets,
-and generate separate artifacts for all enabled capabilities.
+and generate separate standard artifacts for all enabled capabilities, including companion Markdown/Mermaid diagrams.
 ```
 
 Note:

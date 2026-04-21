@@ -8,9 +8,9 @@
 
 目录名是 `backend-service-spec-skill`，用于区分它和跨技术栈扩展技能。
 
-但实际技能调用名仍然是：
+但实际技能调用名是：
 
-- `backend-service-spec-skill`
+- `$backend-service-spec-skill`
 
 也就是说，用户在使用时，仍然应该写：
 
@@ -26,6 +26,7 @@
 - [个人使用流程（偏微服务后端）](./references/personal-workflow.zh-CN.md)
 - [命令产物对照](./references/command-output-map.zh-CN.md)
 - [命令速查表](./references/command-output-scenario-quickref.zh-CN.md)
+- [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
 
 ## 适用场景
 
@@ -227,6 +228,45 @@ service_deep_dive: scope=<service-name>, goal=<纵切目标>
 - `crate_router_map`：通常得到关键链路页、同步/异步分段页、闭环状态页
 - `build_domain_map`：通常得到稳定业务域知识页，如域 -> 服务 -> 规范 映射页、域级规则页
 
+## 图产物支持
+
+这套技能现在支持把图作为标准产物一起输出，但推荐格式不是单独图片，而是 `Markdown + Mermaid`。
+
+推荐格式：
+
+- 使用 `.md` 文件承载图
+- 在 Markdown 中嵌入 Mermaid 代码块
+- 图下面补一段文字，说明节点含义、边含义、证据来源与未闭环项
+
+默认触发规则：
+
+- 当四个核心命令按标准产物执行时，配套图默认应一并产出
+- 用户不需要每次重复写“请生成图”，除非想进一步限定图的范围或格式
+- 只有在范围极小、证据不足或用户明确要求纯文字输出时，才可以省略图
+
+推荐目录：
+
+```text
+mydocs/diagrams/
+  architecture/
+  call-graph/
+  upstream-downstream/
+  sequence/
+```
+
+命令与图的对应关系：
+
+- `create_codemap`：架构图 + 服务调用关系图
+- `service_deep_dive`：上下游依赖图 + 服务内模块架构图
+- `crate_router_map`：时序图 + 链路调用图
+- `build_domain_map`：领域上下文图
+
+为什么推荐这种方式：
+
+- AI 对 Markdown 和 Mermaid 源文本的识别更稳定
+- 图可以持续增量更新
+- 后续仍然可以再导出 PNG / SVG 给人看，但图片不作为主知识载体
+
 完整对照请看：
 
 - [命令产物对照](./references/command-output-map.zh-CN.md)
@@ -293,6 +333,7 @@ mydocs/
 - [使用指南](./references/usage-guide.md)
 - [质量清单](./references/quality-checklist.md)
 - [输出模板](./references/output-templates.md)
+- [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
 - [工作区范围识别](./references/workspace-classification.md)
 
 ## 与扩展技能的关系

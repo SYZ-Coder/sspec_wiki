@@ -53,6 +53,7 @@
 - 服务职责边界
 - 上下游依赖关系
 - 服务级总览图
+- 按标准产物执行时，默认还会产出架构图和服务调用关系图
 
 详细说明：
 
@@ -72,6 +73,7 @@
 - 接口清单
 - 依赖关系页
 - 服务规范页
+- 按标准产物执行时，默认还会产出上下游依赖图和模块架构图
 
 详细说明：
 
@@ -90,6 +92,7 @@
 - 关键链路页
 - 同步 / 异步分段页
 - 闭环状态页
+- 按标准产物执行时，默认还会产出时序图和链路调用图
 
 详细说明：
 
@@ -108,6 +111,12 @@
 - 业务域页
 - 域到服务映射页
 - 域级规则页
+- 按标准产物执行时，默认还会产出域上下文图
+
+默认输出规则：
+
+- 对四个后端核心命令来说，标准产物执行现在默认等于“正文页 + 配套 Markdown/Mermaid 图”
+- 只有在你想限定更小图范围、特殊命名，或明确要求纯文字输出时，才需要额外说明
 
 详细说明：
 
@@ -269,7 +278,8 @@
 ### 只用服务端基础技能
 
 ```text
-请用 $backend-service-spec-skill 梳理这个后端微服务项目。
+请用 $backend-service-spec-skill 按标准产物梳理这个后端微服务项目。
+正文页与配套 Markdown/Mermaid 图一并输出。
 ```
 
 ### 服务端基础技能轻量全量
@@ -281,7 +291,8 @@
 2. 再做 create_codemap
 3. 再对 1 到 2 个高价值服务做 service_deep_dive
 4. 再对 1 到 2 条关键链路做 crate_router_map
-5. 严格按代码事实输出
+5. 按标准产物输出，并默认生成配套 Markdown/Mermaid 图
+6. 严格按代码事实输出
 ```
 
 ### 服务端基础技能重型全量
@@ -294,8 +305,9 @@
 3. 对多个高价值服务做 service_deep_dive
 4. 对多条关键链路做 crate_router_map
 5. 最后做 build_domain_map
-6. 输出验证页与未闭环清单
-7. 严格按代码事实输出
+6. 按标准产物输出，并默认生成配套 Markdown/Mermaid 图
+7. 输出验证页与未闭环清单
+8. 严格按代码事实输出
 ```
 
 ### 只用扩展技能
@@ -308,12 +320,14 @@
 
 ```text
 请以 $backend-service-spec-skill 为主流程，并启用 $cross-tech-stack-spec-skill 做混合栈适配。
+按标准产物输出，并一并生成配套 Markdown/Mermaid 图。
 ```
 
 ### 扩展技能全开
 
 ```text
 请以 $backend-service-spec-skill 为主流程，并启用 $cross-tech-stack-spec-skill，同时开启 enable_contract_map + enable_gateway_map + enable_field_lineage + enable_context_propagation_map + enable_error_semantics + enable_async_contract_map + enable_external_dependency_dossier + enable_interface_verification_assets，对项目做完整增强梳理。
+按标准产物输出，并一并生成配套 Markdown/Mermaid 图。
 ```
 
 ### 全量完整模式
@@ -321,7 +335,7 @@
 ```text
 请以 $backend-service-spec-skill 为主流程，并启用 $cross-tech-stack-spec-skill，
 同时开启 enable_contract_map + enable_gateway_map + enable_field_lineage + enable_context_propagation_map + enable_error_semantics + enable_async_contract_map + enable_external_dependency_dossier + enable_interface_verification_assets，
-对项目做一次全量完整分析，并为所有能力分别输出产物文档。
+对项目做一次全量完整分析，并为所有能力分别输出标准产物文档与配套 Markdown/Mermaid 图。
 ```
 
 提示：

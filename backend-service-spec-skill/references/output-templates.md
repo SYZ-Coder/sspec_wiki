@@ -20,6 +20,47 @@
 mydocs/index/<scope>-workspace-classification.md
 ```
 
+## 0.5 图产物通用模板
+
+图类产物默认使用 `Markdown + Mermaid`，不要只输出图片。
+
+默认放置规则：
+
+- 优先把图直接内嵌到对应正文文档
+- 只有在图需要跨文档复用、需要独立高频更新、需要集中导出或管理，或用户明确要求图文分离时，才拆到 `mydocs/diagrams/`
+- 如果拆到 `mydocs/diagrams/`，正文里仍要保留简短说明，并附上该图文件链接
+
+推荐落点：
+
+```text
+mydocs/diagrams/architecture/
+mydocs/diagrams/call-graph/
+mydocs/diagrams/upstream-downstream/
+mydocs/diagrams/sequence/
+```
+
+通用模板：
+
+````md
+# <diagram-name>
+
+## 1. Scope
+## 2. Evidence basis
+
+```mermaid
+flowchart LR
+  A[entry]
+  B[service-a]
+  C[service-b]
+  A --> B
+  B --> C
+```
+
+## 3. Node notes
+## 4. Edge notes
+## 5. Unresolved gaps
+````
+
 ## 1. 跨服务 create_codemap 模板
 
 ```md
@@ -41,6 +82,27 @@ mydocs/index/<scope>-workspace-classification.md
 ```text
 mydocs/codemap/<name>.md
 ```
+
+推荐附带图产物：
+
+```text
+mydocs/diagrams/architecture/<name>-architecture.md
+mydocs/diagrams/call-graph/<name>-call-graph.md
+```
+
+如果拆分图文件，正文中建议这样写：
+
+````md
+## 架构图
+
+本轮将架构图单独维护，便于复用与增量更新：
+
+- [架构图](../diagrams/architecture/<name>-architecture.md)
+
+## 服务调用关系图
+
+- [服务调用关系图](../diagrams/call-graph/<name>-call-graph.md)
+````
 
 ## 2. crate_router_map 模板
 
@@ -65,6 +127,25 @@ mydocs/codemap/<name>.md
 ```text
 mydocs/routermap/<route-name>.md
 ```
+
+推荐附带图产物：
+
+```text
+mydocs/diagrams/sequence/<route-name>-sequence.md
+mydocs/diagrams/call-graph/<route-name>-call-graph.md
+```
+
+如果拆分图文件，正文中建议这样写：
+
+````md
+## 时序图
+
+- [时序图](../diagrams/sequence/<route-name>-sequence.md)
+
+## 链路调用图
+
+- [链路调用图](../diagrams/call-graph/<route-name>-call-graph.md)
+````
 
 通信链路表建议：
 
@@ -105,6 +186,20 @@ mydocs/domains/<domain>/
   sources.md
 ```
 
+推荐附带图产物：
+
+```text
+mydocs/diagrams/architecture/<domain>-domain-context.md
+```
+
+如果拆分图文件，正文中建议这样写：
+
+````md
+## 域上下文图
+
+- [域上下文图](../diagrams/architecture/<domain>-domain-context.md)
+````
+
 ## 4. 单服务第一轮模板
 
 ```md
@@ -127,6 +222,25 @@ mydocs/services/<service>/
   mq.md
   sources.md
 ```
+
+推荐附带图产物：
+
+```text
+mydocs/diagrams/upstream-downstream/<service>-dependencies.md
+mydocs/diagrams/architecture/<service>-module-architecture.md
+```
+
+如果拆分图文件，正文中建议这样写：
+
+````md
+## 上下游依赖图
+
+- [上下游依赖图](../../diagrams/upstream-downstream/<service>-dependencies.md)
+
+## 模块架构图
+
+- [模块架构图](../../diagrams/architecture/<service>-module-architecture.md)
+````
 
 ## 5. 单服务第二轮增强模板
 
