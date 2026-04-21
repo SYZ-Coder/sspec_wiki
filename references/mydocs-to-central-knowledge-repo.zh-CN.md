@@ -6,8 +6,8 @@
 
 核心原则是：
 
-- 先让技能把过程产物输出到 `mydocs/`
-- 再把这些产物迁移并回收到长期使用的项目中央知识库
+- 先让技能把所有产物统一输出到 `mydocs/`
+- 再按 `mydocs/` 内部不同层级做整理、审阅和复用
 
 不要把 `mydocs/` 直接当成团队知识的最终落点。
 
@@ -16,23 +16,23 @@
 默认建议按下面方式映射：
 
 - `mydocs/codemap/`
-  -> `project/sources/codemap-import/<batch>/`
+  -> `sources/codemap-import/<batch>/`
 
 - `mydocs/routermap/`
-  -> 先进入 `project/sources/codemap-import/<batch>/`
+  -> 先进入 `sources/codemap-import/<batch>/`
   -> 再按知识归属回收到：
-  - `project/services/<service>/`
-  - `project/domains/<domain>/`
-  - `project/architecture/`
+  - `mydocs/services/<service>/`
+  - `mydocs/domains/<domain>/`
+  - `architecture/`
 
 - `mydocs/services/`
-  -> `project/services/<service>/`
+  -> 继续作为稳定服务知识层维护
 
-- `mydocs/domain/`
-  -> `project/domains/<domain>/`
+- `mydocs/domains/`
+  -> 继续作为稳定业务域知识层维护
 
 - `mydocs/specs/`
-  -> 先进入 `project/standards/`
+  -> 先进入中央库的规则 / 标准接收层
   -> 成熟后再进入 `openspec/specs/`
 
 ## 推荐的两步流程
@@ -73,9 +73,9 @@ batch=2026-04-20-sample-project
 mode=safe
 要求：
 1. 按 mydocs-to-central-knowledge-repo.zh-CN.md 规则执行
-2. 只导入到 project/sources/codemap-import/<batch>/
+2. 只导入到 `sources/codemap-import/<batch>/`
 3. 自动生成 IMPORT-README.md
-4. 不直接修改 project/services、project/domains、project/standards、openspec/specs
+4. 不直接修改中央库中的稳定知识层与 `openspec/specs`
 ```
 
 ### 示例 2：回收到稳定知识层
@@ -88,11 +88,11 @@ recover=services,domains,standards
 mode=guided
 要求：
 1. 按 mydocs-to-central-knowledge-repo.zh-CN.md 规则执行
-2. 优先读取 project/sources/codemap-import/2026-04-20-sample-project/IMPORT-README.md
+2. 优先读取 `sources/codemap-import/2026-04-20-sample-project/IMPORT-README.md`
 3. 对线索级内容必须显式标注
 4. 不直接写入 openspec/specs
 ```
 
 ## 一句话规则
 
-技能负责产出 `mydocs/`，中央知识库负责吸收经过审阅、映射和回收后的稳定知识。
+技能负责把不同层级产物统一产出到 `mydocs/`，中央知识库负责吸收经过审阅、映射和回收后的稳定知识。

@@ -14,6 +14,12 @@
 ## 5. 当前边界
 ```
 
+推荐落点：
+
+```text
+mydocs/index/<scope>-workspace-classification.md
+```
+
 ## 1. 跨服务 create_codemap 模板
 
 ```md
@@ -28,6 +34,12 @@
 ## 7. 关键业务链路索引
 ## 8. 风险与盲区
 ## 9. 证据来源
+```
+
+推荐落点：
+
+```text
+mydocs/codemap/<name>.md
 ```
 
 ## 2. crate_router_map 模板
@@ -46,6 +58,12 @@
 ## 9. 失败重试 / 幂等 / 补偿线索
 ## 10. 证据等级说明
 ## 11. 代码证据
+```
+
+推荐落点：
+
+```text
+mydocs/routermap/<route-name>.md
 ```
 
 通信链路表建议：
@@ -80,7 +98,7 @@
 域目录建议：
 
 ```text
-<domain>/
+mydocs/domains/<domain>/
   overview.md
   services.md
   rules.md
@@ -102,7 +120,7 @@
 第一轮最小页面集合：
 
 ```text
-<service>/
+mydocs/services/<service>/
   overview.md
   entrypoints.md
   dependencies.md
@@ -115,7 +133,7 @@
 适用于接口面宽、通信面多、外部依赖重的大服务。
 
 ```text
-<service>/
+mydocs/services/<service>/
   overview.md
   entrypoints.md
   dependencies.md
@@ -170,4 +188,10 @@
 ## 5. 尚未闭环确认的关系
 ## 6. 后续建议
 ## 7. 证据来源
+```
+
+推荐落点：
+
+```text
+mydocs/context/<service-family>-context.md
 ```

@@ -4,7 +4,7 @@ This page helps users quickly decide:
 
 - which command to use
 - what it usually produces
-- where to store the outputs
+- which layer inside `mydocs/` should store the outputs
 - what scenarios it fits best
 
 ## `create_codemap`
@@ -84,7 +84,7 @@ Typical outputs:
 Recommended directory:
 
 ```text
-mydocs/domain/
+mydocs/domains/
 ```
 
 Best for:
@@ -137,9 +137,12 @@ Recommended directory:
 mydocs/
   codemap/
   services/
+  domains/
   routermap/
-  domain/
+  context/
+  specs/
   validation/
+  index/
 ```
 
 Best for:

@@ -1,6 +1,6 @@
 # 知识生命周期规则
 
-本规则用于管理中央仓库中的知识产物，不再把所有梳理都当成一次性输出。
+本规则用于管理 `mydocs/` 中的知识产物，不再把所有梳理都当成一次性输出。
 
 ## 1. 三类知识状态
 
@@ -10,9 +10,9 @@
 
 典型位置：
 
-- `project/services/<service>/`
-- `project/domains/<domain>/`
-- `project/standards/`
+- `mydocs/services/<service>/`
+- `mydocs/domains/<domain>/`
+- `mydocs/index/`
 
 特点：
 
@@ -29,6 +29,8 @@
 - `mydocs/codemap/`
 - `mydocs/routermap/`
 - `mydocs/context/`
+- `mydocs/specs/`
+- `mydocs/validation/`
 
 特点：
 
@@ -50,7 +52,7 @@
 
 在重新梳理前，优先按以下顺序读取：
 
-1. 先读 `project/` 下 current 稳定页
+1. 先读 `mydocs/services/`、`mydocs/domains/`、`mydocs/index/` 下 current 稳定页
 2. 再读与当前目标最相关的 `mydocs/` draft / 过程页
 3. 最后才回到源码重新全量扫描
 
@@ -102,7 +104,7 @@
 
 ## 6. 禁止事项
 
-- 不要把 `mydocs/` 过程页直接当成稳定知识正文
+- 不要把 `mydocs/codemap/`、`mydocs/routermap/` 过程页直接当成稳定知识正文
 - 不要每次都从源码零开始，忽略已有稳定页
 - 不要让 draft 自动覆盖 current
 - 不要把 archive 当成当前事实入口

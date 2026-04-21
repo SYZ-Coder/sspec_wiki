@@ -14,7 +14,7 @@
 关键动作：
 
 - 做 workspace 范围判断
-- 判断目标产物应该落在 `mydocs/` 还是 `project/`
+- 判断目标产物应该落在 `mydocs/` 还是 ``
 
 ### 1.2 reuse-existing-artifacts
 
@@ -71,7 +71,7 @@
 
 含义：
 
-- 将经过检查的稳定知识沉淀到 `project/`
+- 将经过检查的稳定知识沉淀到 ``
 
 关键动作：
 

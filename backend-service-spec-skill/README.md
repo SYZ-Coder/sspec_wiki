@@ -222,10 +222,10 @@ service_deep_dive: scope=<service-name>, goal=<deep-dive-goal>
 
 ## What Each Command Usually Produces
 
-- `create_codemap`: service inventory, service relationship overview, technology/module layering
-- `service_deep_dive`: single-service structure page, interface inventory, dependency page, service rules/spec page
-- `crate_router_map`: key route page, synchronous/asynchronous route segments, closure status page
-- `build_domain_map`: domain page, domain -> service -> spec mapping, domain-level rules
+- `create_codemap`: index-layer outputs such as service inventory, service relationship overview, and technology/module layering
+- `service_deep_dive`: stable knowledge pages for one service, such as structure, interfaces, dependencies, and service rules/specs
+- `crate_router_map`: index-layer outputs such as key route pages, synchronous/asynchronous route segments, and closure status
+- `build_domain_map`: stable knowledge pages for one domain, such as domain -> service -> spec mapping and domain-level rules
 
 See the full mapping here:
 
@@ -264,23 +264,17 @@ That guide explains:
 
 ## Suggested Output Structure
 
-Process artifacts usually go into:
+Use one unified `mydocs/` structure for index-layer outputs, stable knowledge pages, and process-layer artifacts:
 
 ```text
 mydocs/
   codemap/
+  services/
+  domains/
   routermap/
   context/
   specs/
-```
-
-Stable knowledge pages usually go into:
-
-```text
-project/
-  services/
-  domains/
-  standards/
+  validation/
   index/
 ```
 

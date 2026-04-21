@@ -1,6 +1,6 @@
 # Backend Skill Command Output Map
 
-This page explains the typical outputs produced by the common commands in `backend-service-spec-skill`.
+This page explains the typical outputs produced by the common commands in `backend-service-spec-skill`, and which layer inside `mydocs/` those outputs usually belong to.
 
 ## `create_codemap`
 
@@ -65,7 +65,22 @@ Typical outputs:
 Typical directory:
 
 ```text
-mydocs/domain/
+mydocs/domains/
+```
+
+## Recommended Directory Layout
+
+```text
+mydocs/
+  README.md
+  codemap/
+  services/
+  domains/
+  routermap/
+  context/
+  specs/
+  validation/
+  index/
 ```
 
 ## Lightweight Full Analysis

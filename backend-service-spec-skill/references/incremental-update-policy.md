@@ -14,9 +14,9 @@
 
 如果存在：
 
-- `project/services/<service>/`
-- `project/domains/<domain>/`
-- `project/standards/`
+- `mydocs/services/<service>/`
+- `mydocs/domains/<domain>/`
+- `mydocs/index/`
 
 则优先判断：
 
@@ -31,11 +31,13 @@
 - `mydocs/codemap/`
 - `mydocs/routermap/`
 - `mydocs/context/`
+- `mydocs/specs/`
+- `mydocs/validation/`
 
 则优先判断：
 
 - 是否可以基于最近一轮继续补齐
-- 是否需要把过程页中的稳定事实沉淀到 `project/`
+- 是否需要把过程页中的稳定事实沉淀到 `mydocs/services/` 或 `mydocs/domains/`
 
 ## 3. 常见场景与推荐动作
 

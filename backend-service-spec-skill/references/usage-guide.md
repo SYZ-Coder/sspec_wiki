@@ -36,20 +36,20 @@
 新增的规则层默认自动生效，包括：
 
 - 范围识别
-- current / draft / archive 生命周期判断
+- `current / draft / archive` 生命周期判断
 - 增量更新优先
 - 必要时才 full-rebuild
 
 如果你想让系统更明确地走“增量维护”而不是“重建”，可以在 goal 里补一句，例如：
 
 ```text
-基于已有 project/services 内容增量补齐，不要全量重建
+基于已有 mydocs/services 内容增量补齐，不要全量重建
 ```
 
 或：
 
 ```text
-先读取 current 和 draft，再决定是否重建
+先读取 mydocs/services、mydocs/domains 下 current，再读 draft，再决定是否重建
 ```
 ## 1. 四个功能总览
 
@@ -75,7 +75,7 @@ create_codemap: mode=feature, scope=<功能名>, goal=<梳理局部功能流程>
 作用：
 
 - 把零散服务知识上卷成“域 -> 服务 -> 规范”三层知识
-- 帮助团队建立更稳定、可复用的上下文层
+- 帮助团队建立更稳定、可复用的业务域知识层
 
 推荐命令：
 
@@ -229,7 +229,7 @@ service_deep_dive: scope=<服务名>, goal=<做单服务纵切>
 
 ## 5. 增量维护建议
 
-如果中央仓库已经有内容，不要默认重跑全量梳理。
+如果 `mydocs/` 中已经有内容，不要默认重跑全量梳理。
 
 建议额外参考：
 
@@ -240,6 +240,5 @@ service_deep_dive: scope=<服务名>, goal=<做单服务纵切>
 最常见的正确姿势是：
 
 ```text
-先读 current 稳定页 -> 再读相关 draft -> 能增量补齐就不重建
+先读稳定知识层 current -> 再读相关过程层 draft -> 能增量补齐就不重建
 ```
-

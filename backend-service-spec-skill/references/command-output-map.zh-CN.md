@@ -1,6 +1,6 @@
 # 服务端基础技能命令产物对照
 
-本文用于说明 `backend-service-spec-skill` 中各个常用命令执行后，通常会产出什么文档。
+本文用于说明 `backend-service-spec-skill` 中各个常用命令执行后，通常会产出什么文档，以及这些文档在 `mydocs/` 中应属于哪一层。
 
 注意：
 
@@ -100,7 +100,7 @@ build_domain_map: scope=<system-or-service-group>, goal=<按业务域梳理>
 常见落点目录：
 
 ```text
-mydocs/domain/
+mydocs/domains/
 ```
 
 ## 5. 轻量全量分析
@@ -149,7 +149,10 @@ mydocs/
   README.md
   codemap/
   services/
+  domains/
   routermap/
-  domain/
+  context/
+  specs/
   validation/
+  index/
 ```

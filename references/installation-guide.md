@@ -158,7 +158,7 @@ Recommended reading:
 Shortest practical flow:
 
 1. import the project `mydocs/` into the source layer of the central knowledge repository
-2. then recover stable content into `project/services/`, `project/domains/`, and `project/standards/`
+2. then recover stable content following the `mydocs/services/`, `mydocs/domains/`, and `mydocs/specs/` structure
 
 Copyable two-step wording:
 

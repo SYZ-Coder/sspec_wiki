@@ -6,8 +6,8 @@ This page explains how to use skill outputs after analysis is complete.
 
 The key idea is:
 
-- let the skill generate process artifacts into `mydocs/`
-- then migrate and recover those artifacts into a long-term central knowledge repository
+- let the skill generate all artifacts into `mydocs/`
+- then organize, review, and reuse those artifacts by layer inside `mydocs/`
 
 Do not treat `mydocs/` as the final destination for team knowledge.
 
@@ -16,23 +16,23 @@ Do not treat `mydocs/` as the final destination for team knowledge.
 Use these mappings by default:
 
 - `mydocs/codemap/`
-  -> `project/sources/codemap-import/<batch>/`
+  -> `sources/codemap-import/<batch>/`
 
 - `mydocs/routermap/`
-  -> first `project/sources/codemap-import/<batch>/`
+  -> first `sources/codemap-import/<batch>/`
   -> then recover into:
-  - `project/services/<service>/`
-  - `project/domains/<domain>/`
-  - `project/architecture/`
+  - `mydocs/services/<service>/`
+  - `mydocs/domains/<domain>/`
+  - `architecture/`
 
 - `mydocs/services/`
-  -> `project/services/<service>/`
+  -> continue to serve as the stable service-knowledge layer
 
-- `mydocs/domain/`
-  -> `project/domains/<domain>/`
+- `mydocs/domains/`
+  -> continue to serve as the stable domain-knowledge layer
 
 - `mydocs/specs/`
-  -> first `project/standards/`
+  -> first the standards / rules intake layer in the central repository
   -> then, only if mature enough, `openspec/specs/`
 
 ## Recommended Two-Step Workflow
@@ -73,9 +73,9 @@ batch=2026-04-20-sample-project
 mode=safe
 Requirements:
 1. follow the rules in mydocs-to-central-knowledge-repo.md
-2. import only into project/sources/codemap-import/<batch>/
+2. import only into `sources/codemap-import/<batch>/`
 3. generate IMPORT-README.md
-4. do not directly update project/services, project/domains, project/standards, or openspec/specs
+4. do not directly update the stable knowledge layer or openspec/specs in the central repository
 ```
 
 ### Example 2: Recover Into Stable Knowledge Pages
@@ -88,11 +88,11 @@ recover=services,domains,standards
 mode=guided
 Requirements:
 1. follow the rules in mydocs-to-central-knowledge-repo.md
-2. read project/sources/codemap-import/2026-04-20-sample-project/IMPORT-README.md first
+2. read `sources/codemap-import/2026-04-20-sample-project/IMPORT-README.md` first
 3. mark clue-level content explicitly
 4. do not directly write into openspec/specs
 ```
 
 ## One-Sentence Rule
 
-Let the skill generate `mydocs/`, but let the central repository absorb only reviewed, mapped, and properly recovered knowledge.
+Let the skill generate layered artifacts in `mydocs/`, but let the central repository absorb only reviewed, mapped, and properly recovered knowledge.

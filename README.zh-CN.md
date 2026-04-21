@@ -157,6 +157,7 @@
 
 - [License](./LICENSE)
 - [安装指南](./references/installation-guide.zh-CN.md)
+- [目录与术语统一基准](./references/directory-and-terminology-baseline.zh-CN.md)
 - [从 `mydocs` 到项目中央知识库](./references/mydocs-to-central-knowledge-repo.zh-CN.md)
 - [中央知识库与 OpenSpec 协同规则](./references/knowledge-repo-and-openspec-collaboration.zh-CN.md)
 

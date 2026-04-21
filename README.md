@@ -163,6 +163,7 @@ This repository also includes skill-usage companion files:
 
 - [License](./LICENSE)
 - [Installation Guide](./references/installation-guide.md)
+- [Directory And Terminology Baseline](./references/directory-and-terminology-baseline.md)
 - [From `mydocs` To A Central Knowledge Repository](./references/mydocs-to-central-knowledge-repo.md)
 - [Central Knowledge Repository And OpenSpec Collaboration](./references/knowledge-repo-and-openspec-collaboration.md)
 

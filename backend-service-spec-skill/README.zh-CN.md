@@ -223,9 +223,9 @@ service_deep_dive: scope=<service-name>, goal=<纵切目标>
 ## 命令执行后通常会得到什么
 
 - `create_codemap`：通常得到服务清单页、服务关系总图、技术栈与模块分层页
-- `service_deep_dive`：通常得到单服务结构页、接口清单页、依赖关系页、服务规范页
+- `service_deep_dive`：通常得到稳定服务知识页，如单服务结构页、接口清单页、依赖关系页、服务规范页
 - `crate_router_map`：通常得到关键链路页、同步/异步分段页、闭环状态页
-- `build_domain_map`：通常得到业务域页、域 -> 服务 -> 规范 映射页、域级规则页
+- `build_domain_map`：通常得到稳定业务域知识页，如域 -> 服务 -> 规范 映射页、域级规则页
 
 完整对照请看：
 
@@ -264,23 +264,17 @@ service_deep_dive: scope=<service-name>, goal=<纵切目标>
 
 ## 目录建议
 
-过程产物一般放在：
+统一产物目录建议：
 
 ```text
 mydocs/
   codemap/
+  services/
+  domains/
   routermap/
   context/
   specs/
-```
-
-稳定知识正文一般放在：
-
-```text
-project/
-  services/
-  domains/
-  standards/
+  validation/
   index/
 ```
 

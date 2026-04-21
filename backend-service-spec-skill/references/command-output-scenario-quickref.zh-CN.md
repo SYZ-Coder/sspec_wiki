@@ -4,7 +4,7 @@
 
 - 该用哪个命令
 - 会产出什么
-- 建议放到哪个目录
+- 建议放到 `mydocs/` 的哪一层
 - 适合什么场景
 
 ## 1. `create_codemap`
@@ -112,7 +112,7 @@ build_domain_map: scope=<system-or-service-group>, goal=<按业务域梳理>
 推荐目录：
 
 ```text
-mydocs/domain/
+mydocs/domains/
 ```
 
 适合场景：
@@ -165,9 +165,12 @@ mydocs/
 mydocs/
   codemap/
   services/
+  domains/
   routermap/
-  domain/
+  context/
+  specs/
   validation/
+  index/
 ```
 
 适合场景：
