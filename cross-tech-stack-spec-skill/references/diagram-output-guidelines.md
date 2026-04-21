@@ -61,6 +61,16 @@ Below each diagram, add a short explanation that covers:
 
 Do not present guessed relationships as confirmed relationships in either the diagram or the explanatory text.
 
+## Mermaid Compatibility Baseline
+
+To reduce parser differences across Mermaid renderers, mixed-stack diagrams should also follow these rules:
+
+- prefer role-semantic or action-semantic node labels instead of full method signatures
+- avoid packing `method(arg)`, generics, JSON fragments, unescaped quotes, or dense punctuation into one node
+- keep exact method names, DTO names, enum names, Redis keys, and topic names in the explanatory text below the diagram
+- if you need to express a lookup by field, prefer a short phrase such as `query relation by businessId`
+- if a node needs multiple ideas, shorten it; the node should optimize for stable rendering and fast recognition, while the surrounding text carries code-level precision
+
 ## Minimal Mermaid Template
 
 ```mermaid

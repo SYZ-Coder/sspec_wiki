@@ -92,6 +92,11 @@ flowchart LR
 - 边要尽量标注调用类型，例如 `HTTP`、`Feign`、`MQ`、`Callback`
 - 图中的闭环状态、证据来源、未确认项要在图下文字说明中写清楚
 - 不要把猜测关系直接画成已确认关系
+- 节点标签优先写“角色语义”或“动作语义”，不要默认把 `method(arg)` 这类方法签名直接放进节点
+- 精确方法名、DTO 名、枚举名、Redis key、topic 名等细节，更适合放在图下正文说明，而不是塞进同一个 Mermaid 节点
+- 单个节点里避免同时混入括号参数、复杂 JSON、未转义引号、过长冒号串、过密标点
+- 如果需要表达“按某字段查询”，优先写成 `query group relation by businessId` 这类短语，而不是 `getGroupChatRelationshipInfo(businessId)`
+- 在标准产物交付前，至少肉眼复查一遍 Mermaid 节点文本，优先消除容易触发解析器误判的括号签名式写法
 
 ## 6. 派生图片
 

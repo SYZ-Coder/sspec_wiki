@@ -195,3 +195,18 @@ Do not redraw the callback as fully confirmed unless the receiver-side evidence 
 - 图本身会独立且高频变化
 - 团队需要集中导出或管理图资产
 - 用户明确要求图文分离
+
+## 10. Mermaid 兼容性提醒
+
+为了减少渲染异常，图节点建议默认使用“短语式标签”：
+
+- 推荐：`query order relation by orderId`
+- 推荐：`sync chat record in database`
+- 不推荐：`getOrderRelation(orderId)`
+- 不推荐：`modifyChatRecord({\"msgKey\":\"...\"})`
+
+也就是说：
+
+- 图里优先保留动作语义
+- 精确方法名、参数名、结构体细节放在图下说明
+- 这样对人和 AI 都足够可读，同时更容易跨渲染器稳定显示

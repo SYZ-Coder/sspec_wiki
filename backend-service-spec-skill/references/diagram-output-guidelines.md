@@ -92,6 +92,11 @@ flowchart LR
 - label edges with call type where possible, such as `HTTP`, `Feign`, `MQ`, or `Callback`
 - explain closure state, evidence source, and unresolved items below the diagram
 - do not draw guessed relationships as confirmed relationships
+- prefer role-semantic or action-semantic node labels over raw method signatures such as `method(arg)`
+- keep exact method names, DTO names, enum names, Redis keys, and similar precision details in the text below the diagram rather than packing them into one Mermaid node
+- avoid mixing parentheses-heavy signatures, JSON fragments, unescaped quotes, or dense punctuation inside a single node label
+- if you need to express a lookup by field, prefer a short phrase like `query group relation by businessId`
+- before considering a diagram complete, do a quick label sanity check and remove labels likely to confuse stricter Mermaid parsers
 
 ## 6. Derived Images
 

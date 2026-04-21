@@ -195,3 +195,18 @@ Split to `mydocs/diagrams/` only when:
 - the diagram changes independently and often
 - the team needs centralized export or diagram asset management
 - the user explicitly asks for diagram/text separation
+
+## 10. Mermaid Compatibility Reminder
+
+To reduce rendering failures, prefer short phrase labels in nodes:
+
+- recommended: `query order relation by orderId`
+- recommended: `sync chat record in database`
+- avoid: `getOrderRelation(orderId)`
+- avoid: `modifyChatRecord({\"msgKey\":\"...\"})`
+
+In practice:
+
+- use the diagram for action semantics
+- keep exact method names and parameter details in the text below it
+- this keeps the diagram readable for humans and AI while staying more stable across Mermaid renderers

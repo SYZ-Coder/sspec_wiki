@@ -113,6 +113,9 @@ Default rules:
 - use `mydocs/diagrams/` only when the diagram needs reuse across documents, independent frequent updates, centralized asset management/export, or the user explicitly asks for diagram/text separation
 - if a diagram is split into `mydocs/diagrams/`, keep a short explanation and direct link in the parent document
 - use labels on edges such as `HTTP`, `Gateway`, `Bridge`, `MQ`, `Callback`, `Local dependency`, or `Runtime invocation` to avoid mixed-stack ambiguity
+- keep Mermaid node labels renderer-safe: prefer action semantics or role semantics over raw method signatures such as `method(arg)`
+- keep exact method names, DTO names, enum names, Redis keys, and similar precision details in the text below the diagram, not packed into one fragile node label
+- if a label needs multiple ideas, shorten it instead of mixing parentheses, quoted payload fragments, and dense punctuation into one node
 
 ## Stack Selection
 
@@ -147,4 +150,3 @@ Default rules:
 
 Use this skill alongside the backend-service-spec-skill, not as a replacement.
 It is an opt-in extension for cross-tech-stack analysis.
-

@@ -30,6 +30,12 @@ mydocs/index/<scope>-workspace-classification.md
 - 只有在图需要跨文档复用、需要独立高频更新、需要集中导出或管理，或用户明确要求图文分离时，才拆到 `mydocs/diagrams/`
 - 如果拆到 `mydocs/diagrams/`，正文里仍要保留简短说明，并附上该图文件链接
 
+Mermaid 兼容性提醒：
+
+- 图节点优先写短语式动作语义或角色语义
+- 不要默认把 `method(arg)`、复杂 JSON、未转义引号直接塞进节点标签
+- 精确方法名与参数细节更适合写在图下说明中
+
 推荐落点：
 
 ```text
