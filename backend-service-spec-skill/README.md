@@ -317,6 +317,39 @@ mydocs/
   index/
 ```
 
+### What Each Directory Is For
+
+These directories are more useful as knowledge layers than as simple command buckets:
+
+- `mydocs/codemap/`
+  - answers "what does the overall structure look like?"
+  - best as the first read when entering a new system
+- `mydocs/services/`
+  - answers "how is one important service layered, and what interfaces and dependencies does it expose?"
+  - best before modifying a specific service
+- `mydocs/routermap/`
+  - answers "how does one real request or message route run?"
+  - best for integration, route debugging, and failure analysis
+- `mydocs/domains/`
+  - answers "how should service facts be rolled up into domain knowledge?"
+  - best for central knowledge-repository consolidation
+- `mydocs/context/`
+  - answers "what cross-service shared facts matter across the current scope?"
+  - typical content includes contract mapping, field lineage, context propagation, error semantics, async contracts, and external dependencies
+  - it is not owned by one service; it supports collaboration understanding across multiple systems in the current analysis scope
+- `mydocs/validation/`
+  - answers "what is already closed, what remains unresolved, and where are the risks?"
+  - best for trust and readiness checks before reuse
+- `mydocs/index/`
+  - answers "what is the overall entry point, reading order, and scope boundary for this pass?"
+  - best as the navigation page for future readers
+
+The most important point about `mydocs/context/` is:
+
+- it is the global cross-cutting context directory within the current analysis scope
+- it is mainly for cross-end, cross-service, and cross-route work
+- it is not an absolute global for every repository everywhere; it only applies to the scope included in the current pass
+
 If the team uses a central knowledge repository, read next:
 
 - [From `mydocs` To A Central Knowledge Repository](../references/mydocs-to-central-knowledge-repo.md)

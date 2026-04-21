@@ -136,6 +136,32 @@
 1. 先读本文档
 2. 再读 [Backend Service Spec Skill README](./backend-service-spec-skill/README.zh-CN.md)
 3. 再读 [服务端技能使用指南](./backend-service-spec-skill/references/usage-guide.md)
+
+## `mydocs` 产物目录怎么理解
+
+很多用户第一次看到 `mydocs/` 时，知道它是产物目录，但不一定马上能判断每个子目录分别做什么。可以先按下面这张表理解：
+
+| 目录 | 主要回答什么问题 | 更偏向谁使用 |
+| --- | --- | --- |
+| `mydocs/codemap/` | 这个工作区整体长什么样、有哪些核心系统与关系 | 首次接手项目的人、做全局认知的 AI |
+| `mydocs/services/` | 某个关键服务内部怎么分层、有哪些接口与依赖 | 做单服务深挖的人、准备改某服务的 AI |
+| `mydocs/routermap/` | 一条真实请求链路或消息链路是怎么跑的 | 做联调、故障分析、链路排查的人和 AI |
+| `mydocs/domains/` | 这些服务最终能沉淀成哪些业务域知识 | 做中央知识库沉淀的人和 AI |
+| `mydocs/context/` | 跨服务共用的接口事实、字段事实、上下文透传、错误语义、异步契约、外部依赖是什么 | 做跨模块编码、接口联调、问题排查的 AI 和开发者 |
+| `mydocs/validation/` | 哪些结论已经闭环、哪些还只是线索、还剩什么风险 | 做结果验收、可信度把关的人和 AI |
+| `mydocs/index/` | 这次分析的总索引、阅读入口、范围边界是什么 | 所有读产物的人 |
+
+其中最容易被误解的是 `mydocs/context/`：
+
+- 它不是某一个单独服务的私有目录
+- 它更像“本次分析范围内的全局横切上下文层”
+- 它主要服务于跨端、跨服务、跨链路协作
+- 它的边界是“本轮被纳入分析 scope 的系统”，不是无限扩大到整个组织的所有仓库
+
+如果你想进一步看技能内页对这些目录的解释，可以继续阅读：
+
+- [Backend Service Spec Skill README](./backend-service-spec-skill/README.zh-CN.md)
+- [Cross Tech Stack Spec Skill README](./cross-tech-stack-spec-skill/README.zh-CN.md)
 4. 如果是混合栈项目，再读 [Cross Tech Stack Spec Skill README](./cross-tech-stack-spec-skill/README.zh-CN.md)
 
 ## 场景导航表

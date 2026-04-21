@@ -76,6 +76,33 @@
 
 当目标包含“接口链路是否清晰、前后端谁调用谁、调用声明能否对到处理方”时，这个技能现在建议补一页接口对照页。
 
+## 产物目录理解说明
+
+当这个扩展技能与 `$backend-service-spec-skill` 一起使用时，通常会落到统一的 `mydocs/` 目录结构中。
+
+对 mixed-stack 项目来说，最值得额外说明的是 `mydocs/context/`：
+
+- 它不是只给后端服务看的
+- 它也不是某个 App 模块、H5 页面或 Python 子工程的私有说明页
+- 它是“当前分析范围内的横切上下文层”
+
+在 mixed-stack 场景下，`mydocs/context/` 通常承载：
+
+- 前后端接口映射
+- 网关/转发链路事实
+- 字段血缘
+- 上下文透传
+- 错误语义
+- 异步 producer/topic/consumer 契约
+- 外部依赖档案
+
+所以它更适合回答：
+
+- 这个页面最终调到了哪个后端 handler
+- 这个 `businessId` / `sessionId` / `requestId` 是怎么跨层传递的
+- 这个错误码和返回结构是在什么位置统一处理的
+- 这个能力依赖了哪些外部系统
+
 ## 业务域页说明
 
 当目标包含跨技术栈业务域梳理时，这个技能现在建议使用“domain -> entry surfaces -> systems/modules -> rules/specs”的混合栈域页结构，而不是直接复用纯后端的 `domain -> service -> spec`。

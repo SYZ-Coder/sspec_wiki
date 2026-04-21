@@ -68,6 +68,33 @@ Default trigger rule:
 
 For communication analysis, this skill recommends a communication matrix with count basis, evidence levels, closure state, and code locations, so conclusions are easier to verify.
 
+## How To Read The Output Structure
+
+When this extension runs together with `$backend-service-spec-skill`, the outputs usually land in one shared `mydocs/` structure.
+
+For mixed-stack projects, the directory that most often needs explanation is `mydocs/context/`:
+
+- it is not only for backend services
+- it is not a private page set for one app module, one H5 page, or one Python subproject
+- it is the cross-cutting context layer for the current analysis scope
+
+In mixed-stack analysis, `mydocs/context/` usually carries:
+
+- frontend-to-backend interface mappings
+- gateway or forwarding facts
+- field lineage
+- context propagation
+- error semantics
+- async producer/topic/consumer contracts
+- external dependency dossiers
+
+So it is the right place to answer questions like:
+
+- which backend handler does this page or app entry finally call?
+- how does `businessId`, `sessionId`, or `requestId` move across layers?
+- where is this error code or response structure normalized?
+- which external systems does this capability depend on?
+
 ## Optional Deep Extensions
 
 If you need finer-grained interface, field, error, context propagation, or cross-team dependency analysis, use the optional switch-controlled extensions. These remain disabled by default and do not change the stable baseline workflow.

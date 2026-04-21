@@ -144,6 +144,27 @@ If you want the full picture:
 3. Then read the [Backend Skill Usage Guide](./backend-service-spec-skill/references/usage-guide.md)
 4. If the project is mixed-stack, continue with the [Cross Tech Stack Spec Skill README](./cross-tech-stack-spec-skill/README.md)
 
+## How To Read The `mydocs` Output Structure
+
+Many users understand that `mydocs/` is the output root, but do not immediately know what each subdirectory is for. The simplest way to read it is:
+
+| Directory | Main question it answers | Best suited for |
+| --- | --- | --- |
+| `mydocs/codemap/` | What does the overall workspace look like, and what are the core systems and relationships? | People or AI building first-pass global understanding |
+| `mydocs/services/` | How is one important service structured internally, and what interfaces and dependencies does it have? | People or AI preparing to modify one service |
+| `mydocs/routermap/` | How does one real request chain or message chain run? | People or AI doing integration, route tracing, or incident analysis |
+| `mydocs/domains/` | How should service facts be consolidated into durable business-domain knowledge? | People or AI building a central knowledge repository |
+| `mydocs/context/` | What shared cross-service facts exist around contracts, fields, context propagation, error semantics, async contracts, and external dependencies? | People or AI doing cross-module coding, interface alignment, or debugging |
+| `mydocs/validation/` | Which conclusions are closed with evidence, which remain clue-level, and what risks are still open? | People or AI validating trustworthiness before reuse |
+| `mydocs/index/` | What is the index, reading order, and scope boundary for this analysis pass? | Anyone consuming the outputs |
+
+The directory most likely to be misunderstood is `mydocs/context/`:
+
+- it is not a private folder for one single service
+- it is better understood as the global cross-cutting context layer within the current analysis scope
+- it mainly serves cross-end, cross-service, and cross-route collaboration
+- its boundary is the systems included in the current analysis scope, not every repository in an organization
+
 ## Scenario Navigation Table
 
 If you are unsure where to start, choose an entry point by scenario:
