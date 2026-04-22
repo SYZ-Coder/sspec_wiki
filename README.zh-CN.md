@@ -206,6 +206,7 @@
 - [扩展技能命令产物对照](./cross-tech-stack-spec-skill/references/command-output-map.zh-CN.md)
 - [图产物输出规范](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.zh-CN.md)
 - [图产物示例模板](./cross-tech-stack-spec-skill/references/diagram-output-example-template.zh-CN.md)
+- [Mermaid 自检清单](./cross-tech-stack-spec-skill/references/mermaid-safety-checklist.zh-CN.md)
 
 ## 开源配套文件
 
@@ -287,6 +288,7 @@
 - [扩展技能命令产物对照](./cross-tech-stack-spec-skill/references/command-output-map.zh-CN.md)
 - [扩展技能命令速查表](./cross-tech-stack-spec-skill/references/command-output-scenario-quickref.zh-CN.md)
 - [图产物输出规范](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.zh-CN.md)
+- [Mermaid 自检清单](./cross-tech-stack-spec-skill/references/mermaid-safety-checklist.zh-CN.md)
 - [全量完整模式](./references/full-analysis-mode.zh-CN.md)
 - [可选开关式扩展说明](./cross-tech-stack-spec-skill/references/optional-switch-controlled-extensions.zh-CN.md)
 - [扩展技能 README](./cross-tech-stack-spec-skill/README.zh-CN.md)

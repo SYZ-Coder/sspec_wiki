@@ -116,6 +116,7 @@ See the full mapping here:
 - [Command Output Map](./references/command-output-map.md)
 - [Diagram Output Guidelines](./references/diagram-output-guidelines.md)
 - [Diagram Output Example Template](./references/diagram-output-example-template.md)
+- [Mermaid Safety Checklist](./references/mermaid-safety-checklist.zh-CN.md)
 
 ## Read Next
 
@@ -124,6 +125,7 @@ See the full mapping here:
 - [Command Quick Reference](./references/command-output-scenario-quickref.md)
 - [Diagram Output Guidelines](./references/diagram-output-guidelines.md)
 - [Diagram Output Example Template](./references/diagram-output-example-template.md)
+- [Mermaid Safety Checklist](./references/mermaid-safety-checklist.zh-CN.md)
 - [Full Analysis Mode](../references/full-analysis-mode.md)
 - [Usage And Differences](./references/usage-and-differences.md)
 - [Activation And Boundaries](./references/activation-and-boundaries.md)

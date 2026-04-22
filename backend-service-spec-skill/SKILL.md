@@ -276,6 +276,7 @@ mydocs/
 - `references/usage-guide.md`
 - `references/output-templates.md`
 - `references/diagram-output-guidelines.md`
+- `references/mermaid-safety-checklist.zh-CN.md`
 
 ## 8. 输出风格
 
@@ -290,6 +291,7 @@ mydocs/
 - Mermaid 节点标签优先写“角色语义”或“动作语义”，不要默认把 `method(arg)` 这类方法签名直接塞进节点
 - 精确的方法名、DTO 名、枚举名、Redis key、topic 名等细节保留在图下正文说明中，图节点本身优先保证兼容渲染
 - 如果节点文本需要换行，优先拆成短语，不要在同一节点里叠加括号参数、引号、复杂 JSON 和多层标点
+- 图产物交付前，按 `references/mermaid-safety-checklist.zh-CN.md` 做最后一轮自检
 
 ## 7.5 新增规则页
 

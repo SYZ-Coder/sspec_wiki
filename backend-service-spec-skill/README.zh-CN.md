@@ -27,6 +27,7 @@
 - [命令产物对照](./references/command-output-map.zh-CN.md)
 - [命令速查表](./references/command-output-scenario-quickref.zh-CN.md)
 - [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
+- [Mermaid 自检清单](./references/mermaid-safety-checklist.zh-CN.md)
 
 ## 适用场景
 
@@ -367,6 +368,7 @@ mydocs/
 - [质量清单](./references/quality-checklist.md)
 - [输出模板](./references/output-templates.md)
 - [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
+- [Mermaid 自检清单](./references/mermaid-safety-checklist.zh-CN.md)
 - [工作区范围识别](./references/workspace-classification.md)
 
 ## 与扩展技能的关系

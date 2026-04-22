@@ -132,6 +132,7 @@
 - [命令产物对照](./references/command-output-map.zh-CN.md)
 - [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
 - [图产物示例模板](./references/diagram-output-example-template.zh-CN.md)
+- [Mermaid 自检清单](./references/mermaid-safety-checklist.zh-CN.md)
 
 ## 建议继续阅读
 
@@ -140,6 +141,7 @@
 - [命令速查表](./references/command-output-scenario-quickref.zh-CN.md)
 - [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
 - [图产物示例模板](./references/diagram-output-example-template.zh-CN.md)
+- [Mermaid 自检清单](./references/mermaid-safety-checklist.zh-CN.md)
 - [全量完整模式](../references/full-analysis-mode.zh-CN.md)
 - [用法与区别说明](./references/usage-and-differences.zh-CN.md)
 - [基础技能与扩展技能边界](./references/base-vs-extension-boundaries.md)

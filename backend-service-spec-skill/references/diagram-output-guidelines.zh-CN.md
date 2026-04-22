@@ -97,6 +97,7 @@ flowchart LR
 - 单个节点里避免同时混入括号参数、复杂 JSON、未转义引号、过长冒号串、过密标点
 - 如果需要表达“按某字段查询”，优先写成 `query group relation by businessId` 这类短语，而不是 `getGroupChatRelationshipInfo(businessId)`
 - 在标准产物交付前，至少肉眼复查一遍 Mermaid 节点文本，优先消除容易触发解析器误判的括号签名式写法
+- 图生成后，交付前必须对照 `mermaid-safety-checklist.zh-CN.md` 及其中的正反示例再做一轮显式自检
 
 ## 6. 派生图片
 

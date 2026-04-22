@@ -97,6 +97,7 @@ flowchart LR
 - avoid mixing parentheses-heavy signatures, JSON fragments, unescaped quotes, or dense punctuation inside a single node label
 - if you need to express a lookup by field, prefer a short phrase like `query group relation by businessId`
 - before considering a diagram complete, do a quick label sanity check and remove labels likely to confuse stricter Mermaid parsers
+- after generating the diagram, explicitly compare it against `mermaid-safety-checklist.zh-CN.md` and the minimal good/bad examples there before delivery
 
 ## 6. Derived Images
 

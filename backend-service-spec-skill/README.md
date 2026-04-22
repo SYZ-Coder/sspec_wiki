@@ -27,6 +27,7 @@ If you want the shortest starting point, read:
 - [Command Output Map](./references/command-output-map.md)
 - [Command Quick Reference](./references/command-output-scenario-quickref.md)
 - [Diagram Output Guidelines](./references/diagram-output-guidelines.md)
+- [Mermaid Safety Checklist](./references/mermaid-safety-checklist.zh-CN.md)
 
 ## When To Use It
 
@@ -366,6 +367,7 @@ If the team uses a central knowledge repository, read next:
 - [Quality Checklist](./references/quality-checklist.md)
 - [Output Templates](./references/output-templates.md)
 - [Diagram Output Guidelines](./references/diagram-output-guidelines.md)
+- [Mermaid Safety Checklist](./references/mermaid-safety-checklist.zh-CN.md)
 - [Workspace Classification](./references/workspace-classification.md)
 
 ## Relationship To The Extension Skill

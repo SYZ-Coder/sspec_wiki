@@ -70,6 +70,7 @@ To reduce parser differences across Mermaid renderers, mixed-stack diagrams shou
 - keep exact method names, DTO names, enum names, Redis keys, and topic names in the explanatory text below the diagram
 - if you need to express a lookup by field, prefer a short phrase such as `query relation by businessId`
 - if a node needs multiple ideas, shorten it; the node should optimize for stable rendering and fast recognition, while the surrounding text carries code-level precision
+- after generating the diagram, explicitly compare it against `mermaid-safety-checklist.zh-CN.md` and its good/bad examples before delivery
 
 ## Minimal Mermaid Template
 

@@ -131,6 +131,7 @@ Default rules:
 - For base vs extension cooperation boundaries: read `references/base-vs-extension-boundaries.md`
 - For activation boundary and cooperation with the backend-service-spec-skill: read `references/activation-and-boundaries.md`
 - For diagram output rules and mixed-stack Mermaid patterns: read `references/diagram-output-guidelines.md`
+- For final Mermaid sanity checks before delivery: read `references/mermaid-safety-checklist.zh-CN.md`
 
 ## Output Rules
 

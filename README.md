@@ -207,6 +207,7 @@ Read more:
 - [Extension Skill Command Output Map](./cross-tech-stack-spec-skill/references/command-output-map.md)
 - [Mixed-Stack Diagram Output Guidelines](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.md)
 - [Mixed-Stack Diagram Output Example Template](./cross-tech-stack-spec-skill/references/diagram-output-example-template.md)
+- [Mermaid Safety Checklist](./cross-tech-stack-spec-skill/references/mermaid-safety-checklist.zh-CN.md)
 
 ## Open-Source Files
 
@@ -277,6 +278,7 @@ Read next:
 - [Extension Skill Command Output Map](./cross-tech-stack-spec-skill/references/command-output-map.md)
 - [Extension Skill Command Quick Reference](./cross-tech-stack-spec-skill/references/command-output-scenario-quickref.md)
 - [Mixed-Stack Diagram Output Guidelines](./cross-tech-stack-spec-skill/references/diagram-output-guidelines.md)
+- [Mermaid Safety Checklist](./cross-tech-stack-spec-skill/references/mermaid-safety-checklist.zh-CN.md)
 - [Full Analysis Mode](./references/full-analysis-mode.md)
 - [Optional Switch Extensions](./cross-tech-stack-spec-skill/references/optional-switch-controlled-extensions.md)
 - [Extension README](./cross-tech-stack-spec-skill/README.md)
