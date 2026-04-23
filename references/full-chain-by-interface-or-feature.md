@@ -93,6 +93,106 @@ Use this when you already know:
 - a business action
 - a user flow
 
+### 4.1 If there is only a feature point and no clear interface/page anchor
+
+When the user only provides a feature point such as "create virtual role", "generate script", or "publish content", but does not provide an interface path, controller method, page path, button name, or topic name, do not jump directly into a backend interface and treat it as the anchor.
+
+In this case, enable the no-anchor feature tracing extension in `cross-tech-stack-spec-skill`: discover entry candidates first, document the App/H5-side state machine and interaction logic, and only then infer the first backend interface and continue the backend chain.
+
+Recommended execution order:
+
+1. Search App/H5/frontend entry surfaces by feature keywords, page names, route constants, button text, tracking names, ViewModel methods, and service API wrappers.
+2. If the user provides a module clue, such as a mobile module, H5 directory, or page component, search that scope first; only expand to the whole App/H5 repository if nothing is found.
+3. After finding candidate entries, output an entry-candidate table first. Do not immediately turn one interface into a fact anchor.
+4. For the matched page or component, add an "App/H5-side feature state machine and interaction logic" section covering page params, entry branches, button state, form fields, prerequisite APIs, async polling, upload/selection, navigation return, and failure feedback.
+5. Then infer the first backend interface from the App/H5 API wrapper, ViewModel, request client, or bridge handler.
+6. After the first interface is closed, continue with controller / service / feign / http / mq / kafka / callback tracing.
+7. If the App/H5 side exposes a page but no interface call can be closed, mark it as `partially closed` or `clue-level`; do not invent an interface.
+
+Required App/H5-side outputs:
+
+- Feature entry candidate table: page, route, button, component, call site, evidence location, closure state.
+- Page parameter table: route params, intent extras, query params, props, store/context fields.
+- Interaction state machine: create/edit/copy/template/external-entry branches.
+- Prerequisite API list: initialization query, AI completion, image generation, upload, polling, selection, validation.
+- Final submit interface inference: button click -> ViewModel/API wrapper/request client chain.
+- Field-write table: how user input, AI backfill, and upload/selection results write into request beans or form state.
+- Submit-button enablement rules: required fields, loading state, AI generation, image generation, permission dialogs.
+- Success behavior: setResult, route jump, page close, H5 navigation, callback, event bus.
+- Failure paths: toast, dialog, API failure callback, local validation failure, polling failure.
+
+Recommended output section name:
+
+```text
+App/H5-side feature state machine and interaction logic
+```
+
+For mobile or H5 mixed projects, also add a Mermaid state-machine diagram:
+
+```text
+entry page -> param parsing -> initialization branch -> user edit/generate/upload/select -> button validation -> submit interface -> success navigation/return
+```
+
+### 4.2 Risk controls for no-anchor feature tracing
+
+This extension must remain a controlled opt-in path. It does not replace existing interface anchors, method anchors, page anchors, or topic anchors.
+
+Activation conditions:
+
+- Enable it only when the user has a feature point but no clear interface path, controller method, page path, button name, or topic name.
+- If the user already provides a clear interface or method, prefer the interface-anchor flow and do not enable no-anchor tracing.
+- If the user provides a module clue, search within that module first instead of scanning the whole repository immediately.
+
+Risk-control execution rules:
+
+1. Limit the search scope first. Priority: user-provided module > App/H5 page module > frontend API wrapper > backend controller > whole-repository search.
+2. The first phase may only output an entry-candidate table. Do not immediately turn one interface into a fact anchor.
+3. Only `closed` or `partially closed` candidates may continue into deep tracing.
+4. `clue-level` entries are clues only and must not be written as fact conclusions.
+5. If there are more than 5 entry candidates, stop deep tracing and ask for a narrower module name, page name, button name, interface name, or keyword.
+6. If the App/H5 side has no visible call site, do not construct a backend interface chain.
+7. If a topic only appears in configs or constants but has no producer / consumer code evidence, do not write it as a complete MQ/Kafka route.
+8. Read only the code needed by the current phase to avoid loading App/H5, backend, MQ, gateway, and external dependency contexts all at once.
+
+Recommended phase boundaries:
+
+1. Phase 1: entry candidate discovery.
+2. Phase 2: App/H5 state machine and interaction logic.
+3. Phase 3: first interface inference.
+4. Phase 4: backend synchronous chain.
+5. Phase 5: MQ/Kafka/asynchronous chain.
+6. Phase 6: external dependencies and verification assets.
+
+Stop conditions:
+
+- More than 5 candidates exist and cannot be ranked reliably.
+- The feature keyword is too generic and matches many unrelated pages or methods.
+- An entry page exists, but the submit interface cannot be closed from code.
+- The backend interface cannot be closed to a controller / handler.
+- An async topic lacks either producer-side or consumer-side evidence.
+
+No-anchor recommended prompt:
+
+```text
+Use $backend-service-spec-skill as the base workflow and enable $cross-tech-stack-spec-skill,
+turning on enable_contract_map + enable_gateway_map + enable_field_lineage + enable_context_propagation_map + enable_error_semantics + enable_async_contract_map + enable_external_dependency_dossier + enable_interface_verification_assets,
+to build a full-chain analysis around feature <feature name>.
+
+There is only a feature point and no clear interface anchor. Please first apply the no-anchor feature tracing extension:
+1. Start from App/H5/frontend entry candidates, including pages, routes, buttons, components, ViewModels, API wrappers, and tracking names.
+2. If a module clue is provided, search that module first; expand only if no entry is found.
+3. Output an entry-candidate table first and label closed / partially closed / clue-level / unresolved.
+4. Must add an App/H5-side feature state machine and interaction logic section, covering page params, entry branches, button states, form fields, prerequisite APIs, image/upload/polling, AI/async generation, navigation return, and failure feedback.
+5. Then infer the first backend interface from the App/H5 call site and continue tracing gateway / BFF / controller / service / feign / http / mq / kafka / callback.
+6. Output interface parameters, addresses, field lineage, context propagation, failure paths, and verification assets.
+7. If topics exist, output producers, consumers, processing services, and payload clues by topic.
+8. Strictly ground every claim in code facts; do not write guesses as facts.
+9. Do not perform whole-repository deep tracing by default; expand the scope only when no entry is found in the current bounded scope.
+10. If there are more than 5 entry candidates, stop and output the candidate table first instead of generating a full chain.
+11. Only closed / partially closed candidates may continue into deep tracing; clue-level entries are clues only.
+12. If a chain segment cannot be closed, mark it as unresolved instead of filling the gap with inferred links.
+```
+
 Recommended command:
 
 ```text
