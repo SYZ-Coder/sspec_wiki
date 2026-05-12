@@ -49,7 +49,11 @@
 
 ## 3. Claude Code / Claude
 
-推荐方式：
+Claude Code 可以分三层接入。
+
+### 3.1 基础方式：`CLAUDE.md`
+
+适合只想让 Claude Code 理解这套规则，但不需要 slash command 的项目。
 
 1. 把本仓库克隆到项目内或项目旁，例如 `ai-skill-lib/`。
 2. 创建或更新 `CLAUDE.md`。
@@ -71,29 +75,134 @@
 - 以 create_codemap、build_domain_map、crate_router_map、service_deep_dive 作为核心分析动作
 ```
 
+这种方式下，`create_codemap`、`service_deep_dive`、`crate_router_map`、`build_domain_map` 是工作流意图，不是 `/create-codemap` 形式的原生命令。
+
+### 3.2 原生技能目录：`.claude/skills/`
+
+如果希望 Claude Code 按技能目录发现并使用这套能力，可以把两个技能目录复制到目标项目：
+
+```text
+<目标项目>/
+  .claude/
+    skills/
+      backend-service-spec-skill/
+        SKILL.md
+      cross-tech-stack-spec-skill/
+        SKILL.md
+```
+
+使用示例：
+
+```text
+/backend-service-spec-skill create_codemap: mode=service_landscape, scope=当前项目, goal=生成服务总图
+```
+
+```text
+/cross-tech-stack-spec-skill 梳理登录链路，要求覆盖页面、后端、消息、callback 边界
+```
+
+也可以直接用自然语言请求，Claude Code 会根据 `SKILL.md` 的 `description` 自动判断是否启用对应技能。
+
+### 3.3 可选命令化：`.claude/commands/`
+
+如果希望用户可以输入 `/create-codemap` 这类命令，把本仓库提供的 `.claude/commands/` 复制到目标项目根目录：
+
+```text
+<目标项目>/
+  .claude/
+    commands/
+      create-codemap.md
+      service-deep-dive.md
+      crate-router-map.md
+      build-domain-map.md
+    skills/
+      backend-service-spec-skill/
+        SKILL.md
+      cross-tech-stack-spec-skill/
+        SKILL.md
+```
+
+复制后可以在 Claude Code 中使用：
+
+```text
+/create-codemap mode=service_landscape scope=当前项目 goal=生成服务总图和关键链路索引
+```
+
+```text
+/service-deep-dive scope=user-service goal=梳理接口、依赖、MQ 和风险热点
+```
+
+```text
+/crate-router-map scope=登录链路 goal=拆分同步调用、异步消息和闭环状态
+```
+
+```text
+/build-domain-map scope=订单域 goal=从已有服务事实上卷为业务域知识
+```
+
+注意：
+
+- `.claude/commands/*.md` 是 Claude Code 的 slash command 模板，不需要 MCP Server。
+- slash command 负责把用户输入转成稳定工作流；真正分析仍然依赖 `SKILL.md`、代码搜索、配置读取和必要的终端命令。
+- 如果目标项目还有自定义脚本，可以在 command 模板中补充对应执行命令。
+- 如果没有脚本，Claude Code 会按技能规则直接分析代码并生成 `mydocs/` 产物。
+
 ## 4. Cursor
 
 推荐方式：
 
-1. 把本仓库克隆到项目内或项目旁，例如 `ai-skill-lib/`。
-2. 创建 `.cursor/rules/backend-service-spec.mdc`。
-3. 创建 `.cursor/rules/cross-tech-stack-spec.mdc`。
-4. 在规则文件中写简版规则。
-5. 在规则文件中回指本仓库。
+1. 把本仓库克隆到目标项目内，例如 `ai-skill-lib/`；或者把两个技能目录复制到目标项目的 `skills/` 目录。
+2. 把本仓库提供的 `.cursor/rules/` 复制到目标项目根目录。
+3. 在 Cursor 中打开目标项目。
+4. 让 Cursor Agent 按命令意图执行，例如 `create_codemap`、`service_deep_dive`、`crate_router_map`、`build_domain_map`。
 
-规则片段示例：
+推荐目录结构：
 
-```md
-本项目分析时，使用以下规则源：
-
-- ./ai-skill-lib/backend-service-spec-skill/SKILL.md
-- ./ai-skill-lib/cross-tech-stack-spec-skill/SKILL.md
-
-规则：
-- 严格按代码事实输出
-- 区分 fact-closed、仅发送侧、仅接收侧、contract-visible、clue
-- 以 create_codemap、build_domain_map、crate_router_map、service_deep_dive 作为核心分析动作
+```text
+<目标项目>/
+  .cursor/
+    rules/
+      backend-service-spec-skill.mdc
+      cross-tech-stack-spec-skill.mdc
+  ai-skill-lib/
+    backend-service-spec-skill/
+      SKILL.md
+    cross-tech-stack-spec-skill/
+      SKILL.md
 ```
+
+也可以把技能放到：
+
+```text
+<目标项目>/
+  skills/
+    backend-service-spec-skill/
+      SKILL.md
+    cross-tech-stack-spec-skill/
+      SKILL.md
+```
+
+Cursor 中可直接输入类似请求：
+
+```text
+create_codemap: mode=service_landscape, scope=当前项目, goal=先生成服务总图和关键链路索引
+```
+
+```text
+service_deep_dive: scope=user-service, goal=梳理接口、依赖、MQ 和风险热点
+```
+
+```text
+crate_router_map: scope=登录链路, goal=拆分同步调用、异步消息和闭环状态
+```
+
+注意：
+
+- `.mdc` 是 Cursor 规则文件，不是原生插件、MCP tool 或 slash command。
+- `create_codemap` 等名称在 Cursor 中表示“工作流意图”，由 Agent 按规则读取代码并生成产物。
+- 如果目标项目提供了 `scripts/`、`bin/`、`tools/`、`package.json`、`Makefile` 等可执行入口，Cursor Agent 可以优先运行它们。
+- 如果没有可执行脚本，Cursor Agent 会按规则手工搜索代码、读取配置并生成 `mydocs/` 文档。
+- 跨技术栈规则只在移动端、H5、Python、混合栈或用户明确要求跨栈分析时启用。
 
 ## 5. VS Code
 

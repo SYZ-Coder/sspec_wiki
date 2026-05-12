@@ -49,7 +49,11 @@ Use $backend-service-spec-skill as the base workflow, and enable $cross-tech-sta
 
 ## 3. Claude Code / Claude
 
-Recommended method:
+Claude Code can be integrated at three levels.
+
+### 3.1 Basic: `CLAUDE.md`
+
+Use this when you only want Claude Code to understand the rules and do not need slash commands.
 
 1. Clone this repository into or beside your project, for example `ai-skill-lib/`.
 2. Create or update `CLAUDE.md`.
@@ -71,29 +75,134 @@ Requirements:
 - use create_codemap, build_domain_map, crate_router_map, and service_deep_dive as the core analysis actions
 ```
 
+With this method, `create_codemap`, `service_deep_dive`, `crate_router_map`, and `build_domain_map` are workflow intents, not native `/create-codemap` slash commands.
+
+### 3.2 Native Skill Folder: `.claude/skills/`
+
+If you want Claude Code to discover and use these capabilities as skills, copy the two skill folders into the target project:
+
+```text
+<target-project>/
+  .claude/
+    skills/
+      backend-service-spec-skill/
+        SKILL.md
+      cross-tech-stack-spec-skill/
+        SKILL.md
+```
+
+Example prompts:
+
+```text
+/backend-service-spec-skill create_codemap: mode=service_landscape, scope=current project, goal=generate the service landscape
+```
+
+```text
+/cross-tech-stack-spec-skill map the login route across page, backend, message, and callback boundaries
+```
+
+You can also ask in natural language. Claude Code uses each `SKILL.md` `description` to decide whether a skill is relevant.
+
+### 3.3 Optional Commands: `.claude/commands/`
+
+If you want users to type commands such as `/create-codemap`, copy this repository's `.claude/commands/` directory into the target project root:
+
+```text
+<target-project>/
+  .claude/
+    commands/
+      create-codemap.md
+      service-deep-dive.md
+      crate-router-map.md
+      build-domain-map.md
+    skills/
+      backend-service-spec-skill/
+        SKILL.md
+      cross-tech-stack-spec-skill/
+        SKILL.md
+```
+
+Then use these commands in Claude Code:
+
+```text
+/create-codemap mode=service_landscape scope=current-project goal=generate service landscape and key route index
+```
+
+```text
+/service-deep-dive scope=user-service goal=map APIs, dependencies, MQ, and risk hotspots
+```
+
+```text
+/crate-router-map scope=login-flow goal=split sync calls, async messages, and closure status
+```
+
+```text
+/build-domain-map scope=order-domain goal=roll existing service facts up into domain knowledge
+```
+
+Notes:
+
+- `.claude/commands/*.md` files are Claude Code slash command templates and do not require an MCP Server.
+- A slash command turns user input into a stable workflow; the actual analysis still depends on `SKILL.md`, code search, config reading, and any necessary terminal commands.
+- If the target project has custom scripts, add their execution details to the command templates.
+- If no scripts exist, Claude Code should inspect code directly and generate `mydocs/` artifacts according to the skill rules.
+
 ## 4. Cursor
 
 Recommended method:
 
-1. Clone this repository into or beside your project, for example `ai-skill-lib/`.
-2. Create `.cursor/rules/backend-service-spec.mdc`.
-3. Create `.cursor/rules/cross-tech-stack-spec.mdc`.
-4. Put short rule summaries in those files.
-5. Point those rule files back to this repository.
+1. Clone this repository into the target project, for example `ai-skill-lib/`, or copy the two skill folders into the target project's `skills/` directory.
+2. Copy this repository's `.cursor/rules/` directory into the target project root.
+3. Open the target project in Cursor.
+4. Ask Cursor Agent to run workflow intents such as `create_codemap`, `service_deep_dive`, `crate_router_map`, or `build_domain_map`.
 
-Example rule snippet:
+Recommended layout:
 
-```md
-Use this repository as the analysis rule source:
-
-- ./ai-skill-lib/backend-service-spec-skill/SKILL.md
-- ./ai-skill-lib/cross-tech-stack-spec-skill/SKILL.md
-
-Rules:
-- stay strictly grounded in code facts
-- distinguish fact-closed, send-side only, receive-side only, contract-visible, and clue-level evidence
-- use create_codemap, build_domain_map, crate_router_map, and service_deep_dive as the main analysis actions
+```text
+<target-project>/
+  .cursor/
+    rules/
+      backend-service-spec-skill.mdc
+      cross-tech-stack-spec-skill.mdc
+  ai-skill-lib/
+    backend-service-spec-skill/
+      SKILL.md
+    cross-tech-stack-spec-skill/
+      SKILL.md
 ```
+
+You can also place the skills under:
+
+```text
+<target-project>/
+  skills/
+    backend-service-spec-skill/
+      SKILL.md
+    cross-tech-stack-spec-skill/
+      SKILL.md
+```
+
+Example prompts in Cursor:
+
+```text
+create_codemap: mode=service_landscape, scope=current project, goal=generate the service landscape and key route index first
+```
+
+```text
+service_deep_dive: scope=user-service, goal=map APIs, dependencies, MQ, and risk hotspots
+```
+
+```text
+crate_router_map: scope=login flow, goal=split sync calls, async messages, and closure status
+```
+
+Notes:
+
+- `.mdc` files are Cursor rules, not native plugins, MCP tools, or slash commands.
+- Names such as `create_codemap` are workflow intents in Cursor; the Agent follows the rules, reads code, and generates artifacts.
+- If the target project provides executable entries under `scripts/`, `bin/`, `tools/`, `package.json`, or `Makefile`, Cursor Agent can prefer running them.
+- If no executable script exists, Cursor Agent should manually inspect code and config, then generate `mydocs/` documentation.
+- The cross-tech-stack rule is only for mobile, H5, Python, mixed-stack projects, or explicit cross-stack analysis requests.
 
 ## 5. VS Code
 

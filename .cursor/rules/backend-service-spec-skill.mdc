@@ -1,0 +1,157 @@
+---
+description: Backend service code knowledge mapping workflow for legacy systems, microservices, and platform service repositories.
+globs:
+  - "**/*.java"
+  - "**/*.kt"
+  - "**/*.groovy"
+  - "**/*.xml"
+  - "**/*.yml"
+  - "**/*.yaml"
+  - "**/*.properties"
+  - "**/*.md"
+alwaysApply: false
+---
+
+# Backend Service Spec Skill
+
+Use this rule when the user asks to understand, map, document, or maintain reusable knowledge for backend systems, legacy systems, microservices, platform services, service chains, APIs, MQ flows, scheduled jobs, or central knowledge base pages.
+
+Do not use this rule for ordinary feature implementation, bug fixes, test writing, or refactors unless the user explicitly asks for code knowledge mapping as part of the work.
+
+## Required Skill Source
+
+Before producing artifacts, read the skill source from one of these locations:
+
+- If this skill library exists in the target project: `backend-service-spec-skill/SKILL.md`
+- If copied under a shared skill folder: `skills/backend-service-spec-skill/SKILL.md`
+- If cloned as a project-local rule source: `ai-skill-lib/backend-service-spec-skill/SKILL.md`
+- If only this rule is available, follow the summarized workflow below and state that the full skill source was not found.
+
+Also read only the directly relevant reference files when they exist:
+
+- `backend-service-spec-skill/references/workspace-classification.md`
+- `backend-service-spec-skill/references/codemap-modes.md`
+- `backend-service-spec-skill/references/router-map.md`
+- `backend-service-spec-skill/references/domain-layering.md`
+- `backend-service-spec-skill/references/service-deep-dive.md`
+- `backend-service-spec-skill/references/central-repo-conventions.md`
+- `backend-service-spec-skill/references/quality-checklist.md`
+- `backend-service-spec-skill/references/output-templates.md`
+- `backend-service-spec-skill/references/diagram-output-guidelines.md`
+- `backend-service-spec-skill/references/mermaid-safety-checklist.zh-CN.md`
+
+## Command Intents
+
+Treat these text commands as workflow intents, not as built-in executable commands:
+
+- `create_codemap`
+- `service_deep_dive`
+- `crate_router_map`
+- `create_router_map`
+- `build_domain_map`
+
+If the target project provides scripts or CLI commands for these intents, prefer running them from the integrated terminal. Common locations to check:
+
+- `scripts/`
+- `bin/`
+- `tools/`
+- `package.json`
+- `Makefile`
+- `pom.xml`
+- `build.gradle`
+
+If no executable script exists, perform the workflow manually by reading code, configs, and existing documentation.
+
+## Workspace Classification First
+
+Before deep analysis, identify the current scope:
+
+- `single-system`: one system or one runtime family
+- `service-family`: multiple services in the same family
+- `multi-system-workspace`: multiple independent systems in one workspace
+
+State:
+
+- current scope type
+- current goal: landscape index, key route, service deep dive, or stable knowledge page
+- expected output location under `mydocs/`
+
+If the workspace is `multi-system-workspace`, start with `create_codemap` in service landscape mode, then narrow by family before doing route maps or domain maps.
+
+## Workflows
+
+Use `create_codemap` for service landscape, project maps, feature maps, or service-chain indexes.
+
+Expected outputs include:
+
+- service list
+- service responsibilities
+- upstream and downstream dependencies
+- entrypoints and exits
+- sync and async link indexes
+- external dependencies
+- risk hotspots
+- code evidence locations
+- workspace classification
+
+Use `service_deep_dive` for a single high-value service.
+
+Expected outputs include:
+
+- `overview.md`
+- `entrypoints.md`
+- `dependencies.md`
+- `mq.md`
+- `sources.md`
+- optionally `api.md`, `call-chain.md`, `external-dependencies.md`, `route-map.md`, `topic-detail.md`, `ws.md`, `runtime-config.md`, `risk-and-hotspots.md`
+
+Use `crate_router_map` or `create_router_map` for a real request route, message route, or cross-service communication path.
+
+Always split:
+
+- synchronous calls
+- asynchronous message links
+- scheduled or compensation links
+- realtime channels, if present
+
+Use `build_domain_map` only after enough lower-level service facts exist.
+
+Domain pages must roll up service facts; do not rewrite service pages or invent business definitions without code evidence.
+
+## Evidence Discipline
+
+Every important conclusion must be grounded in code, config, contract files, logs, tests, or existing docs. Distinguish:
+
+- `fact-closed`: both sides or enough evidence close the loop
+- `fact-send-side`: only sender or caller side visible
+- `fact-receive-side`: only receiver or handler side visible
+- `contract-visible`: contract is visible but runtime relation is not fully closed
+- `clue`: naming, package, topic, handler, or config clue only
+
+Never present guesses as facts. Do not claim a two-sided service route, MQ route, DTO field meaning, or domain rule unless the evidence closes the loop.
+
+## Output Locations
+
+Prefer these artifact folders:
+
+- `mydocs/codemap/`
+- `mydocs/services/`
+- `mydocs/domains/`
+- `mydocs/routermap/`
+- `mydocs/diagrams/`
+- `mydocs/context/`
+- `mydocs/specs/`
+- `mydocs/validation/`
+- `mydocs/index/`
+
+Use Markdown for text artifacts and Mermaid for diagrams when diagrams help. Keep Mermaid labels renderer-safe: avoid dense method signatures, raw payload fragments, or fragile punctuation inside node labels.
+
+## Cursor Behavior
+
+When this rule is active:
+
+- read only the code and reference files needed for the requested scope
+- prefer `rg` for code search
+- keep outputs factual and evidence-linked
+- write generated knowledge artifacts into `mydocs/` unless the user gives another target path
+- ask a concise clarification only when scope or output target cannot be reasonably inferred

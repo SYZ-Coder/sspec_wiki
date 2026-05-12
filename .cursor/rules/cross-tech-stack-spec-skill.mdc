@@ -1,0 +1,143 @@
+---
+description: Optional extension for mobile, H5, frontend, Python, and mixed-stack code knowledge mapping.
+globs:
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.js"
+  - "**/*.jsx"
+  - "**/*.vue"
+  - "**/*.py"
+  - "**/*.dart"
+  - "**/*.swift"
+  - "**/*.m"
+  - "**/*.mm"
+  - "**/*.kt"
+  - "**/*.java"
+  - "**/*.xml"
+  - "**/*.json"
+  - "**/*.yml"
+  - "**/*.yaml"
+  - "**/*.md"
+alwaysApply: false
+---
+
+# Cross Tech Stack Spec Skill
+
+Use this rule as an extension to `backend-service-spec-skill.mdc` when one of these is true:
+
+- the user explicitly asks for cross-tech-stack analysis or mixed-stack mapping
+- the target repository is primarily mobile, H5, web frontend, Python, data, worker, script, or mixed-stack
+- the requested route crosses page, app, client, backend, task, callback, webhook, bridge, gateway, or message boundaries
+
+Do not use this rule by default for ordinary backend-only microservice analysis. In that case, use `backend-service-spec-skill.mdc`.
+
+## Required Skill Source
+
+Before producing artifacts, read the skill source from one of these locations:
+
+- If this skill library exists in the target project: `cross-tech-stack-spec-skill/SKILL.md`
+- If copied under a shared skill folder: `skills/cross-tech-stack-spec-skill/SKILL.md`
+- If cloned as a project-local rule source: `ai-skill-lib/cross-tech-stack-spec-skill/SKILL.md`
+- Also read `backend-service-spec-skill/SKILL.md`, `skills/backend-service-spec-skill/SKILL.md`, or `ai-skill-lib/backend-service-spec-skill/SKILL.md` because this rule extends the backend service workflow instead of replacing it.
+
+Read only the relevant reference files when they exist:
+
+- `cross-tech-stack-spec-skill/references/mobile-project-guidelines.md`
+- `cross-tech-stack-spec-skill/references/h5-project-guidelines.md`
+- `cross-tech-stack-spec-skill/references/python-project-guidelines.md`
+- `cross-tech-stack-spec-skill/references/mixed-stack-routing-guidelines.md`
+- `cross-tech-stack-spec-skill/references/workspace-layering-template.md`
+- `cross-tech-stack-spec-skill/references/mixed-stack-noise-exclusion-guide.md`
+- `cross-tech-stack-spec-skill/references/interface-mapping-template.md`
+- `cross-tech-stack-spec-skill/references/communication-matrix-guidelines.md`
+- `cross-tech-stack-spec-skill/references/communication-evidence-levels.md`
+- `cross-tech-stack-spec-skill/references/mixed-stack-domain-mapping-guidelines.md`
+- `cross-tech-stack-spec-skill/references/incremental-update-mode.md`
+- `cross-tech-stack-spec-skill/references/activation-and-boundaries.md`
+- `cross-tech-stack-spec-skill/references/diagram-output-guidelines.md`
+- `cross-tech-stack-spec-skill/references/mermaid-safety-checklist.zh-CN.md`
+
+## Stack-Neutral Adaptation
+
+Keep the original workflow intents, but reinterpret them for the target stack:
+
+- `create_codemap`: project, module, app, page, task, service, or mixed workspace map
+- `service_deep_dive`: project, module, app, package, page group, worker, bridge, or service deep dive
+- `crate_router_map` / `create_router_map`: cross-layer route map
+- `build_domain_map`: domain to entry surfaces to systems/modules to rules/specs
+
+Use stack-neutral names when backend terms would be misleading:
+
+- route, page, screen, task, component, bridge, callback, webhook, gateway, worker, module, client contract, HTTP contract, bridge contract
+
+## Activation Workflow
+
+When this rule is active:
+
+1. Identify the target stack first.
+2. For large or mixed workspaces, produce a workspace-layering view before deep scanning.
+3. Apply noise exclusions for generated folders, vendored code, build outputs, and unrelated modules; record exclusions explicitly.
+4. If this is an update task, identify the changed scope first and update only affected artifacts.
+5. Keep evidence levels strict across frontend, client, backend, task, bridge, callback, and message boundaries.
+6. Use Markdown plus Mermaid for diagrams when cross-layer structure matters.
+
+## Communication Mapping
+
+When mapping communication, record:
+
+- communication type: HTTP, Gateway, Bridge, MQ, Callback, Webhook, Local dependency, Runtime invocation, Scheduled task, Realtime channel
+- caller side evidence
+- handler side evidence
+- contract evidence
+- closure state
+- code locations
+
+Do not confuse:
+
+- page route with backend route
+- local module dependency with runtime RPC dependency
+- client callback with server webhook
+- mobile-native bridge behavior with web-side contract
+- Python task scheduling topology with mere function naming
+- visible contract with verified runtime linkage
+
+## Interface Mapping
+
+Only claim direct caller-to-handler mapping when both sides are visible or defensibly closed through contracts, routing tables, generated clients, schemas, tests, or configuration.
+
+If only one side is visible, mark the relation as sender-side, receiver-side, contract-visible, or clue-level evidence.
+
+## Output Locations
+
+Prefer these folders:
+
+- `mydocs/codemap/`
+- `mydocs/services/` or `mydocs/modules/`
+- `mydocs/routermap/`
+- `mydocs/domains/`
+- `mydocs/context/`
+- `mydocs/diagrams/`
+- `mydocs/validation/`
+- `mydocs/index/`
+
+Use diagrams for:
+
+- global mixed-stack architecture
+- cross-layer call graph
+- page/app/backend/task/callback/bridge sequence flow
+- runtime dependency graph versus code dependency graph
+- caller-to-handler interface mapping
+- gateway forwarding
+- async contract routes
+
+Keep exact method names, DTO names, enum names, Redis keys, route paths, and topic names in the surrounding text when they would make Mermaid labels fragile.
+
+## Cursor Behavior
+
+When this rule is active:
+
+- use `rg` first for discovery
+- avoid repository-wide deep scans when a narrower scope is available
+- document skipped noisy areas when they affect confidence
+- keep generated docs factual and evidence-linked
+- write artifacts into `mydocs/` unless the user gives another path
