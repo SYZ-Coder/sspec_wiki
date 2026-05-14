@@ -143,7 +143,29 @@ mydocs/domains/
 mydocs/diagrams/architecture/
 ```
 
-## 5. 轻量全量分析
+## 5. `requirement_fact_map`
+
+推荐命令：
+
+```text
+requirement_fact_map: scope=<system-or-module-or-chain>, goal=<按功能模块抽取当前事实需求>
+```
+
+默认产物：
+
+- 事实需求总索引
+- 功能模块事实需求页
+- 需求到代码证据矩阵
+- 未闭环需求与人工确认项
+- 关联 codemap / service_deep_dive / routermap / domain map 的需求索引
+
+常见落点目录：
+
+```text
+mydocs/requirements/
+```
+
+## 6. 轻量全量分析
 
 典型流程：
 
@@ -151,6 +173,7 @@ mydocs/diagrams/architecture/
 2. `create_codemap`
 3. 1 到 2 个 `service_deep_dive`
 4. 1 到 2 条 `crate_router_map`
+5. 按需 `requirement_fact_map`
 
 默认产物组合：
 
@@ -158,9 +181,10 @@ mydocs/diagrams/architecture/
 - 1 份 codemap 总图页
 - 1 到 2 份单服务纵切页
 - 1 到 2 份关键链路页
+- 1 份事实需求索引页（按需）
 - 1 份总索引页
 
-## 6. 重型全量分析
+## 7. 重型全量分析
 
 典型流程：
 
@@ -168,8 +192,9 @@ mydocs/diagrams/architecture/
 2. `create_codemap`
 3. 多个 `service_deep_dive`
 4. 多条 `crate_router_map`
-5. `build_domain_map`
-6. 验证页与未闭环清单
+5. 按需 `requirement_fact_map`
+6. `build_domain_map`
+7. 验证页与未闭环清单
 
 默认产物组合：
 
@@ -177,12 +202,13 @@ mydocs/diagrams/architecture/
 - 1 份 codemap 总图页
 - 多份单服务纵切页
 - 多份关键链路页
+- 1 份事实需求索引页（按需）
 - 1 份业务域页
 - 1 份验证页
 - 1 份未闭环清单
 - 1 份总索引页
 
-## 7. 推荐目录结构
+## 8. 推荐目录结构
 
 ```text
 mydocs/
@@ -190,6 +216,7 @@ mydocs/
   codemap/
   services/
   domains/
+  requirements/
   routermap/
   diagrams/
   context/

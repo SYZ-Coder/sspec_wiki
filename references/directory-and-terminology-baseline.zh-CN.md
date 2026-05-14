@@ -13,6 +13,7 @@ mydocs/
   codemap/
   services/
   domains/
+  requirements/
   routermap/
   diagrams/
   context/
@@ -26,6 +27,7 @@ mydocs/
 - `mydocs/codemap/`：索引层，放服务总图、项目总图、功能地图、链路索引
 - `mydocs/services/`：稳定知识层，放单服务纵切知识页
 - `mydocs/domains/`：稳定知识层，放业务域上卷知识页
+- `mydocs/requirements/`：稳定知识层，放按功能模块抽取的当前事实需求、证据矩阵和需求缺口
 - `mydocs/routermap/`：索引层，放跨服务通信链路、接口链路、消息链路
 - `mydocs/diagrams/`：索引层，放 Markdown 内嵌 Mermaid 的架构图、调用关系图、上下游依赖图、时序图
 - `mydocs/context/`：过程层，放上下文包、补充材料、家族上下文页
@@ -33,11 +35,12 @@ mydocs/
 - `mydocs/validation/`：过程层，放验证页、未闭环清单、质量检查页
 - `mydocs/index/`：稳定知识层，放总索引、导航页、范围识别页
 
-## 2. 四个核心命令的默认落点
+## 2. 核心命令的默认落点
 
 - `create_codemap` -> `mydocs/codemap/`
 - `service_deep_dive` -> `mydocs/services/<service>/`
 - `build_domain_map` -> `mydocs/domains/<domain>/`
+- `requirement_fact_map` -> `mydocs/requirements/`
 - `crate_router_map` -> `mydocs/routermap/`
 
 图类产物统一落在：
@@ -73,6 +76,7 @@ mydocs/
 
 - 单服务知识页
 - 业务域知识页
+- 事实需求知识页
 - 总索引页
 - 跨轮次可复用、应保持稳定命名的正文页
 
@@ -80,6 +84,7 @@ mydocs/
 
 - `mydocs/services/`
 - `mydocs/domains/`
+- `mydocs/requirements/`
 - `mydocs/index/`
 
 ### 3.3 过程层

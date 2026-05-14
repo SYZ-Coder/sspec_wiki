@@ -50,7 +50,7 @@ mydocs/diagrams/
 - 正文中还要附上该独立图文件的直接链接
 - 链接前后要保留足够语义，让 AI 仍能理解这张图表达的对象和作用
 
-## 3. 四个核心命令与图产物的关系
+## 3. 核心命令与图产物的关系
 
 - `create_codemap`
   - `mydocs/diagrams/architecture/<scope>-architecture.md`
@@ -63,6 +63,9 @@ mydocs/diagrams/
   - `mydocs/diagrams/call-graph/<flow>-call-graph.md`
 - `build_domain_map`
   - `mydocs/diagrams/architecture/<domain>-domain-context.md`
+- `requirement_fact_map`
+  - 默认优先在需求正文中使用表格和证据矩阵
+  - 如需表达模块与需求关系，可使用 `mydocs/diagrams/architecture/<scope>-requirement-map.md`
 
 ## 4. 最小模板
 

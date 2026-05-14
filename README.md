@@ -129,6 +129,27 @@ Read more:
 - [Backend Service Spec Skill README](./backend-service-spec-skill/README.md)
 - [From `mydocs` To A Central Knowledge Repository](./references/mydocs-to-central-knowledge-repo.md)
 
+### 5. `requirement_fact_map`
+
+Use it when:
+
+- historical projects lack PRDs or explicit requirement evidence
+- you need to extract current factual requirements by functional module from code
+- you want to know what business capabilities the system already supports in practice, not only which services, interfaces, or routes exist
+- you need a requirement knowledge base that product, QA, engineering, and AI agents can reuse
+
+Typical outputs:
+
+- functional-module requirement fact pages
+- requirement-to-code evidence matrix
+- unclosed requirements and human-confirmation items
+- requirement indexes linked back to codemap, service deep dive, router map, and domain map outputs
+
+Read more:
+
+- [Backend Service Spec Skill README](./backend-service-spec-skill/README.md)
+- [Requirement Fact Extraction Guide](./backend-service-spec-skill/references/requirement-fact-extraction.md)
+
 ## Suggested Reading Path
 
 If you want the shortest path to first use:
@@ -154,6 +175,7 @@ Many users understand that `mydocs/` is the output root, but do not immediately 
 | `mydocs/services/` | How is one important service structured internally, and what interfaces and dependencies does it have? | People or AI preparing to modify one service |
 | `mydocs/routermap/` | How does one real request chain or message chain run? | People or AI doing integration, route tracing, or incident analysis |
 | `mydocs/domains/` | How should service facts be consolidated into durable business-domain knowledge? | People or AI building a central knowledge repository |
+| `mydocs/requirements/` | What functional requirements does the current system factually support, and is the evidence closed? | People or AI filling historical requirement gaps and building a requirement knowledge base |
 | `mydocs/context/` | What shared cross-service facts exist around contracts, fields, context propagation, error semantics, async contracts, and external dependencies? | People or AI doing cross-module coding, interface alignment, or debugging |
 | `mydocs/validation/` | Which conclusions are closed with evidence, which remain clue-level, and what risks are still open? | People or AI validating trustworthiness before reuse |
 | `mydocs/index/` | What is the index, reading order, and scope boundary for this analysis pass? | Anyone consuming the outputs |
@@ -175,6 +197,7 @@ If you are unsure where to start, choose an entry point by scenario:
 | You already know a high-value service and want a vertical analysis | `service_deep_dive` | [Backend Skill Quick Start](./backend-service-spec-skill/references/quick-start.md) |
 | You want to trace a real request chain or message chain | `crate_router_map` | [Backend Skill Command Quick Reference](./backend-service-spec-skill/references/command-output-scenario-quickref.md) |
 | You want to consolidate service facts into business-domain knowledge | `build_domain_map` | [Backend Skill Command Output Map](./backend-service-spec-skill/references/command-output-map.md) |
+| Historical requirements are missing, and you need factual requirements by functional module | `requirement_fact_map` | [Requirement Fact Extraction Guide](./backend-service-spec-skill/references/requirement-fact-extraction.md) |
 | The project is mobile, H5, Python, or mixed-stack | `$backend-service-spec-skill` + `$cross-tech-stack-spec-skill` | [Cross Tech Stack Spec Skill README](./cross-tech-stack-spec-skill/README.md) |
 | You want a ready-to-send prompt for Codex | reuse the examples in the root README quick-command section | [Quick Commands](#quick-commands) |
 | You want the full workflow and supporting documents | read the root README first, then the child README and usage guide | [Suggested Reading Path](#suggested-reading-path) |
@@ -184,6 +207,7 @@ If you are unsure where to start, choose an entry point by scenario:
 - For the overall service landscape: start with `create_codemap`
 - For one important service: start with `service_deep_dive`
 - For a real cross-service chain: start with `crate_router_map`
+- For historical requirement gap filling: use `requirement_fact_map` to extract current factual requirements from code
 - For long-lived domain knowledge: finish with `build_domain_map`
 - For mixed-stack projects: use `$backend-service-spec-skill` as the base workflow and enable `$cross-tech-stack-spec-skill`
 
@@ -242,12 +266,14 @@ Core capabilities:
 - cross-service `build_domain_map`
 - `crate_router_map`
 - `service_deep_dive`
+- `requirement_fact_map`
 
 Read next:
 
 - [Backend Skill Quick Start](./backend-service-spec-skill/references/quick-start.md)
 - [Backend Skill Command Output Map](./backend-service-spec-skill/references/command-output-map.md)
 - [Backend Skill Command Quick Reference](./backend-service-spec-skill/references/command-output-scenario-quickref.md)
+- [Requirement Fact Extraction Guide](./backend-service-spec-skill/references/requirement-fact-extraction.md)
 - [Backend Skill Metadata](./backend-service-spec-skill/SKILL.md)
 - [Backend Skill Usage Guide](./backend-service-spec-skill/references/usage-guide.md)
 - [Backend Skill README](./backend-service-spec-skill/README.md)
@@ -343,6 +369,19 @@ Requirements:
 6. generate standard outputs, including companion Markdown/Mermaid diagrams by default
 7. output validation pages and unresolved-chain summaries
 8. stay strictly grounded in code facts
+```
+
+### Historical requirement fact extraction
+
+```text
+Use $backend-service-spec-skill to extract factual requirements for this historical project.
+Requirements:
+1. run create_codemap first to identify system boundaries, services, and core entry points
+2. run service_deep_dive on high-value services
+3. run crate_router_map on key business chains
+4. run requirement_fact_map last to extract current factual requirements by functional module
+5. output artifacts under mydocs/requirements/
+6. stay strictly grounded in code facts, and do not promote clues into confirmed requirements
 ```
 
 ### Extension skill only

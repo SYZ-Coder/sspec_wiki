@@ -9,7 +9,7 @@
 
 默认规则：
 
-- 当四个核心命令按标准产物执行时，默认应一并产出配套图产物
+- 当核心命令按标准产物执行时，默认应一并产出配套图产物
 - 只有在范围极小、证据不足以负责任画图，或用户明确要求纯文字输出时，才可以省略图
 
 ## 1. `create_codemap`
@@ -160,7 +160,34 @@ mydocs/diagrams/architecture/
 - 需要跨服务业务域抽象
 - 想把服务事实提升成长期可复用知识页
 
-## 5. 轻量全量
+## 5. `requirement_fact_map`
+
+命令：
+
+```text
+requirement_fact_map: scope=<system-or-module-or-chain>, goal=<按功能模块抽取当前事实需求>
+```
+
+典型产物：
+
+- 事实需求总索引
+- 功能模块事实需求页
+- 需求到代码证据矩阵
+- 未闭环需求与人工确认项
+
+推荐目录：
+
+```text
+mydocs/requirements/
+```
+
+适合场景：
+
+- 历史 PRD 或需求依据缺失
+- 需要按功能模块理解系统当前实际能力
+- 重构、迁移、补测试前需要确认事实需求边界
+
+## 6. 轻量全量
 
 典型产物组合：
 
@@ -168,6 +195,7 @@ mydocs/diagrams/architecture/
 - codemap 总图页
 - 1 到 2 份单服务纵切页
 - 1 到 2 份关键链路页
+- 事实需求索引页（按需）
 - 总索引页
 - 默认还应包含 codemap、选定服务、选定链路的配套图产物
 
@@ -177,6 +205,7 @@ mydocs/diagrams/architecture/
 mydocs/
   codemap/
   services/
+  requirements/
   routermap/
   diagrams/
 ```
@@ -187,7 +216,7 @@ mydocs/
 - 想控制 token 成本
 - 想先拿一版可靠基线
 
-## 6. 重型全量
+## 7. 重型全量
 
 典型产物组合：
 
@@ -195,6 +224,7 @@ mydocs/
 - codemap 总图页
 - 多份单服务纵切页
 - 多份关键链路页
+- 事实需求索引页（按需）
 - 业务域页
 - 验证页
 - 未闭环清单
@@ -208,6 +238,7 @@ mydocs/
   codemap/
   services/
   domains/
+  requirements/
   routermap/
   diagrams/
   context/

@@ -39,12 +39,13 @@
 - 服务家族级知识梳理
 - 团队中央知识库建设
 - 服务端导向的跨服务链路梳理
+- 历史需求缺失时，从当前代码事实抽取项目事实需求
 
 如果项目明显是 App / H5 / Python / 混合工作区优先，则建议配合：
 
 - [cross-tech-stack-spec-skill](../cross-tech-stack-spec-skill/README.zh-CN.md)
 
-## 四个核心功能
+## 核心功能
 
 ### 1. `create_codemap`
 
@@ -175,14 +176,51 @@
 - 你要做重构、交接或风险评估
 - 你后面还要做业务域页，需要先有稳定的服务页基础
 
-## 四个功能怎么组合使用
+### 5. `requirement_fact_map`
+
+作用：
+
+- 在历史 PRD、需求评审记录缺失时，从当前代码事实抽取“系统事实上已经支持了哪些需求”
+- 按功能模块沉淀项目需求知识库
+- 把接口、页面、任务、消息、配置、数据对象和链路证据上卷为事实需求
+
+如何使用：
+
+- 当你已经有 `create_codemap`、若干 `service_deep_dive` 或 `crate_router_map` 结果时，执行它最稳妥
+- `scope` 一般写系统名、服务组、功能模块或关键链路
+- `goal` 一般写“按功能模块抽取当前事实需求”“补齐历史需求依据”“生成需求证据矩阵”
+
+具体案例：
+
+```text
+请用 $backend-service-spec-skill 对订单履约系统执行 requirement_fact_map。
+要求：
+1. scope=order-fulfillment
+2. 基于现有 codemap、service_deep_dive 和 crate_router_map 结果
+3. 按功能模块抽取当前系统事实需求
+4. 输出需求到代码证据矩阵和未闭环需求清单
+5. 严格区分 fact-closed、fact-entry-only、fact-data-only、clue 和 unknown
+```
+
+你通常会在这种场景下用它：
+
+- 历史项目缺少 PRD，需要补需求依据
+- 产品、测试、研发需要共同理解系统当前实际能力
+- 重构、迁移、补测试前，需要确认事实需求边界
+
+详细规则见：
+
+- [事实需求抽取](./references/requirement-fact-extraction.md)
+
+## 核心功能怎么组合使用
 
 最常见的组合顺序是：
 
 1. 先用 `create_codemap` 看全局
 2. 再用 `service_deep_dive` 深挖关键服务
 3. 再用 `crate_router_map` 追关键业务链路
-4. 最后用 `build_domain_map` 做域级沉淀
+4. 按需用 `requirement_fact_map` 抽取当前事实需求
+5. 最后用 `build_domain_map` 做域级沉淀
 
 一个完整案例：
 
@@ -192,8 +230,9 @@
 1. 先执行 create_codemap，识别核心服务与上下游关系
 2. 再对 order-service 和 payment-service 执行 service_deep_dive
 3. 再对“提交订单”和“支付回调”执行 crate_router_map
-4. 最后输出 build_domain_map，把事实整理为交易域、履约域、支付域、售后域
-5. 所有输出严格以代码证据为准
+4. 再执行 requirement_fact_map，把当前事实能力整理为模块级需求
+5. 最后输出 build_domain_map，把事实整理为交易域、履约域、支付域、售后域
+6. 所有输出严格以代码证据为准
 ```
 
 ## 最常用命令
@@ -222,12 +261,19 @@ crate_router_map: scope=<business-chain-or-entry>, goal=<梳理通信链路>
 service_deep_dive: scope=<service-name>, goal=<纵切目标>
 ```
 
+### 事实需求抽取
+
+```text
+requirement_fact_map: scope=<system-or-module-or-chain>, goal=<按功能模块抽取当前事实需求>
+```
+
 ## 命令执行后通常会得到什么
 
 - `create_codemap`：通常得到服务清单页、服务关系总图、技术栈与模块分层页
 - `service_deep_dive`：通常得到稳定服务知识页，如单服务结构页、接口清单页、依赖关系页、服务规范页
 - `crate_router_map`：通常得到关键链路页、同步/异步分段页、闭环状态页
 - `build_domain_map`：通常得到稳定业务域知识页，如域 -> 服务 -> 规范 映射页、域级规则页
+- `requirement_fact_map`：通常得到功能模块事实需求页、需求证据矩阵、未闭环需求与人工确认项
 
 ## 图产物支持
 
@@ -241,7 +287,7 @@ service_deep_dive: scope=<service-name>, goal=<纵切目标>
 
 默认触发规则：
 
-- 当四个核心命令按标准产物执行时，配套图默认应一并产出
+- 当核心命令按标准产物执行时，配套图默认应一并产出
 - 用户不需要每次重复写“请生成图”，除非想进一步限定图的范围或格式
 - 只有在范围极小、证据不足或用户明确要求纯文字输出时，才可以省略图
 
@@ -280,7 +326,8 @@ mydocs/diagrams/
 2. 先做 `create_codemap`
 3. 再做关键服务的 `service_deep_dive`
 4. 再做关键链路的 `crate_router_map`
-5. 最后再做 `build_domain_map`
+5. 如果历史需求缺失或需要补需求知识库，再做 `requirement_fact_map`
+6. 最后再做 `build_domain_map`
 
 其中最重要的一条规则是：
 
@@ -288,6 +335,8 @@ mydocs/diagrams/
 - 再做跨服务业务域页
 
 这样结果会更准确，也更适合长期复用。
+
+如果本轮目标是补历史需求依据，`requirement_fact_map` 应消费前面几层事实产物，不能把命名线索或单边代码直接写成已确认需求。
 
 ## 个人推荐使用流程
 
@@ -312,6 +361,7 @@ mydocs/
   codemap/
   services/
   domains/
+  requirements/
   routermap/
   context/
   specs/
@@ -335,6 +385,10 @@ mydocs/
 - `mydocs/domains/`
   - 回答“如何从服务事实沉淀成业务域知识”
   - 适合做中央知识库归档
+- `mydocs/requirements/`
+  - 回答“当前系统按功能模块事实上支持了哪些需求”
+  - 典型内容包括：事实需求索引、模块需求页、需求证据矩阵、未闭环需求清单
+  - 适合历史 PRD 缺失、补需求依据、重构前确认需求边界
 - `mydocs/context/`
   - 回答“跨服务共用的横切事实是什么”
   - 典型内容包括：接口映射、字段血缘、上下文透传、错误语义、异步契约、外部依赖
@@ -367,6 +421,7 @@ mydocs/
 - [使用指南](./references/usage-guide.md)
 - [质量清单](./references/quality-checklist.md)
 - [输出模板](./references/output-templates.md)
+- [事实需求抽取](./references/requirement-fact-extraction.md)
 - [图产物输出规范](./references/diagram-output-guidelines.zh-CN.md)
 - [Mermaid 自检清单](./references/mermaid-safety-checklist.zh-CN.md)
 - [工作区范围识别](./references/workspace-classification.md)

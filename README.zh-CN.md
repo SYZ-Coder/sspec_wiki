@@ -115,13 +115,33 @@
 
 默认输出规则：
 
-- 对四个后端核心命令来说，标准产物执行现在默认等于“正文页 + 配套 Markdown/Mermaid 图”
+- 对主要后端梳理命令来说，标准产物执行现在默认等于“正文页 + 配套 Markdown/Mermaid 图”
 - 只有在你想限定更小图范围、特殊命名，或明确要求纯文字输出时，才需要额外说明
 
 详细说明：
 
 - [Backend Service Spec Skill README](./backend-service-spec-skill/README.zh-CN.md)
 - [从 `mydocs` 到项目中央知识库](./references/mydocs-to-central-knowledge-repo.zh-CN.md)
+
+### 5. `requirement_fact_map`
+
+适合什么时候用：
+
+- 历史项目缺少 PRD 或需求依据，需要按功能模块补齐“当前事实需求”
+- 你想知道系统事实上已经支持了哪些业务能力，而不是只看服务、接口和链路
+- 你需要把代码事实上卷成产品、测试、研发都能复用的需求知识库
+
+通常会产出：
+
+- 功能模块事实需求页
+- 需求到代码证据矩阵
+- 未闭环需求与人工确认项
+- 关联 codemap、service deep dive、router map、domain map 的需求索引
+
+详细说明：
+
+- [Backend Service Spec Skill README](./backend-service-spec-skill/README.zh-CN.md)
+- [事实需求抽取规则](./backend-service-spec-skill/references/requirement-fact-extraction.md)
 
 ## 推荐阅读路径
 
@@ -147,6 +167,7 @@
 | `mydocs/services/` | 某个关键服务内部怎么分层、有哪些接口与依赖 | 做单服务深挖的人、准备改某服务的 AI |
 | `mydocs/routermap/` | 一条真实请求链路或消息链路是怎么跑的 | 做联调、故障分析、链路排查的人和 AI |
 | `mydocs/domains/` | 这些服务最终能沉淀成哪些业务域知识 | 做中央知识库沉淀的人和 AI |
+| `mydocs/requirements/` | 当前系统按功能模块事实上支持了哪些需求、证据是否闭环 | 补历史需求依据、做需求知识库的人和 AI |
 | `mydocs/context/` | 跨服务共用的接口事实、字段事实、上下文透传、错误语义、异步契约、外部依赖是什么 | 做跨模块编码、接口联调、问题排查的 AI 和开发者 |
 | `mydocs/validation/` | 哪些结论已经闭环、哪些还只是线索、还剩什么风险 | 做结果验收、可信度把关的人和 AI |
 | `mydocs/index/` | 这次分析的总索引、阅读入口、范围边界是什么 | 所有读产物的人 |
@@ -174,6 +195,7 @@
 | 已经锁定一个关键服务，想做纵向梳理 | `service_deep_dive` | [快速上手](./backend-service-spec-skill/references/quick-start.zh-CN.md) |
 | 想跟一条真实请求链路或消息链路 | `crate_router_map` | [命令速查表](./backend-service-spec-skill/references/command-output-scenario-quickref.zh-CN.md) |
 | 想把多服务事实沉淀成业务域知识 | `build_domain_map` | [命令产物对照](./backend-service-spec-skill/references/command-output-map.zh-CN.md) |
+| 历史需求缺失，想按功能模块抽取当前事实需求 | `requirement_fact_map` | [事实需求抽取规则](./backend-service-spec-skill/references/requirement-fact-extraction.md) |
 | 项目是 App、H5、Python 或混合工作区 | `$backend-service-spec-skill` + `$cross-tech-stack-spec-skill` | [扩展技能 README](./cross-tech-stack-spec-skill/README.zh-CN.md) |
 | 想快速抄一条可直接发给 Codex 的提示词 | 直接复用根 README 里的“快速命令”区块 | [快速命令](#快速命令) |
 | 想系统掌握完整使用方法 | 先看根 README，再进子技能 README 与 usage guide | [推荐阅读路径](#推荐阅读路径) |
@@ -183,6 +205,7 @@
 - 看整体版图：先用 `create_codemap`
 - 看单个关键服务：先用 `service_deep_dive`
 - 看跨服务真实链路：先用 `crate_router_map`
+- 看历史需求补齐：用 `requirement_fact_map` 从代码事实抽取当前事实需求
 - 看稳定业务域沉淀：最后用 `build_domain_map`
 - 看混合栈项目：以 `$backend-service-spec-skill` 为主流程，再启用 `$cross-tech-stack-spec-skill`
 
@@ -246,12 +269,14 @@
 - 跨服务 `build_domain_map`
 - `crate_router_map`
 - `service_deep_dive`
+- `requirement_fact_map`
 
 建议阅读：
 
 - [服务端技能快速上手](./backend-service-spec-skill/references/quick-start.zh-CN.md)
 - [服务端技能命令产物对照](./backend-service-spec-skill/references/command-output-map.zh-CN.md)
 - [服务端技能命令速查表](./backend-service-spec-skill/references/command-output-scenario-quickref.zh-CN.md)
+- [事实需求抽取规则](./backend-service-spec-skill/references/requirement-fact-extraction.md)
 - [服务端技能元数据](./backend-service-spec-skill/SKILL.md)
 - [服务端技能使用指南](./backend-service-spec-skill/references/usage-guide.md)
 - [服务端技能 README](./backend-service-spec-skill/README.zh-CN.md)
@@ -355,10 +380,11 @@
 2. 再做 create_codemap
 3. 对多个高价值服务做 service_deep_dive
 4. 对多条关键链路做 crate_router_map
-5. 最后做 build_domain_map
-6. 按标准产物输出，并默认生成配套 Markdown/Mermaid 图
-7. 输出验证页与未闭环清单
-8. 严格按代码事实输出
+5. 按需做 requirement_fact_map，按功能模块抽取当前事实需求
+6. 最后做 build_domain_map
+7. 按标准产物输出，并默认生成配套 Markdown/Mermaid 图
+8. 输出验证页与未闭环清单
+9. 严格按代码事实输出
 ```
 
 ### 只用扩展技能

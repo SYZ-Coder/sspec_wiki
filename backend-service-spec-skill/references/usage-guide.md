@@ -2,7 +2,7 @@
 
 本指南回答三个问题：
 
-1. 四个功能分别是什么
+1. 核心功能分别是什么
 2. 各自应该用什么命令触发
 3. 什么场景下应该优先用哪一个功能
 
@@ -26,12 +26,13 @@
 
 不需要。
 
-对用户来说，仍然只使用原来的四个功能：
+对用户来说，通常使用下面几个核心功能：
 
 - `create_codemap`
 - `build_domain_map`
 - `crate_router_map`
 - `service_deep_dive`
+- `requirement_fact_map`
 
 新增的规则层默认自动生效，包括：
 
@@ -51,7 +52,7 @@
 ```text
 先读取 mydocs/services、mydocs/domains 下 current，再读 draft，再决定是否重建
 ```
-## 1. 四个功能总览
+## 1. 核心功能总览
 
 ### 1.1 跨服务 `create_codemap`
 
@@ -134,7 +135,28 @@ create_router_map: scope=<业务链路或入口>, goal=<梳理跨服务通信链
 service_deep_dive: scope=<服务名>, goal=<按升级后的模板进行梳理>
 ```
 
-## 2. 四个功能怎么选
+### 1.5 事实需求抽取
+
+作用：
+
+- 在历史 PRD 或需求依据缺失时，从当前代码事实抽取系统已经支持的需求
+- 按功能模块沉淀需求知识库
+- 输出需求证据矩阵和未闭环需求清单
+
+推荐命令：
+
+```text
+requirement_fact_map: scope=<系统、服务群、功能模块或关键链路>, goal=<按功能模块抽取当前事实需求>
+```
+
+重要建议：
+
+- 最好基于 `create_codemap`、`service_deep_dive`、`crate_router_map` 的已有事实产物执行
+- 不要把命名线索、表字段线索或单边代码写成已确认需求
+
+详情见：`requirement-fact-extraction.md`
+
+## 2. 核心功能怎么选
 
 ### 2.1 如果你还不知道系统长什么样
 
@@ -170,6 +192,14 @@ crate_router_map: scope=<链路名>, goal=<梳理跨服务通信路径>
 service_deep_dive: scope=<服务名>, goal=<做单服务纵切>
 ```
 
+### 2.5 如果历史需求缺失，需要补当前事实需求
+
+优先用：
+
+```text
+requirement_fact_map: scope=<系统或模块>, goal=<按功能模块抽取当前事实需求>
+```
+
 ## 3. 推荐组合打法
 
 ### 3.1 多系统工作区首轮
@@ -180,7 +210,8 @@ service_deep_dive: scope=<服务名>, goal=<做单服务纵切>
 3. 按 family 拆 scope
 4. 选 1-3 个关键服务做 service_deep_dive
 5. 对关键请求做 crate_router_map
-6. 最后再评估 build_domain_map
+6. 如果需要补历史需求依据，做 requirement_fact_map
+7. 最后再评估 build_domain_map
 ```
 
 ### 3.2 中央仓库持续建设
@@ -188,8 +219,9 @@ service_deep_dive: scope=<服务名>, goal=<做单服务纵切>
 ```text
 1. 有新服务先补 service_deep_dive
 2. 有新跨服务链路先补 crate_router_map
-3. 服务层事实足够后，再更新 build_domain_map
-4. 多服务重复模式稳定后，再沉淀 standards
+3. 历史需求缺失或需求知识库需要维护时，补 requirement_fact_map
+4. 服务层事实足够后，再更新 build_domain_map
+5. 多服务重复模式稳定后，再沉淀 standards
 ```
 
 ### 3.3 排障型场景
